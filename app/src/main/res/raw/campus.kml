@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <name>Campus USJ</name>
+        <description>Mapa de la Universidad San Jorge, Zaragoza</description>
+        <Style id="poly-0F9D58-1200-77-normal">
+            <LineStyle>
+                <color>ff589d0f</color>
+                <width>1.2</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d589d0f</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="poly-0F9D58-1200-77-highlight">
+            <LineStyle>
+                <color>ff589d0f</color>
+                <width>1.8</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d589d0f</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="poly-0F9D58-1200-77">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#poly-0F9D58-1200-77-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#poly-0F9D58-1200-77-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="poly-9C27B0-1200-77-normal">
+            <LineStyle>
+                <color>ffb0279c</color>
+                <width>1.2</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4db0279c</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="poly-9C27B0-1200-77-highlight">
+            <LineStyle>
+                <color>ffb0279c</color>
+                <width>1.8</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4db0279c</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="poly-9C27B0-1200-77">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#poly-9C27B0-1200-77-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#poly-9C27B0-1200-77-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="poly-FBC02D-1200-77-normal">
+            <LineStyle>
+                <color>ff2dc0fb</color>
+                <width>1.2</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d2dc0fb</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="poly-FBC02D-1200-77-highlight">
+            <LineStyle>
+                <color>ff2dc0fb</color>
+                <width>1.8</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d2dc0fb</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="poly-FBC02D-1200-77">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#poly-FBC02D-1200-77-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#poly-FBC02D-1200-77-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="poly-FF5252-1200-77-normal">
+            <LineStyle>
+                <color>ff5252ff</color>
+                <width>1.2</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d5252ff</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="poly-FF5252-1200-77-highlight">
+            <LineStyle>
+                <color>ff5252ff</color>
+                <width>1.8</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>4d5252ff</color>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="poly-FF5252-1200-77">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#poly-FF5252-1200-77-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#poly-FF5252-1200-77-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Folder>
+            <name>Campus USJ</name>
+            <Placemark>
+                <name>Edificio Rectorado</name>
+                <description><![CDATA[
+<div>
+    <center><img src="https://lh5.googleusercontent.com/Mu1M6K6YWXfqhKy5k7MzyVY-gUCrkOs-ZZzCZKvayZSivZ4PwEfsRRU1BWGb1sOzbqzQTSlaDqQd24p8s7IKQ1i4vXFv6z_rGuBStt3RUs2oGO_itma5lNr5vfCFjWICRsT22Ss" width="100%" /></center>
+    <br/>
+    <p style="text-align: justify;">La <strong>Escuela de Arquitectura y Tecnolog&iacute;a de la Universidad San Jorge</strong> se caracteriza por poner en pr&aacute;ctica metodolog&iacute;as de ense&ntilde;anza centradas en el alumno, con una gran interacci&oacute;n profesorado-estudiante.</p>
+    <p style="text-align: justify;">En su propuesta formativa se encuentran los grados en:</p>
+    <ul>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/arquitectura">Arquitectura</a></p>
+        </li>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/ingenieria-informatica">Ingenier&iacute;a Inform&aacute;tica</a></p>
+        </li>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/diseno-desarrollo-videojuegos">Dise&ntilde;o y Desarrollo de Videojuegos</a></p>
+        </li>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/ingenieria-informatica-semipresencial">Ingenier&iacute;a Inform&aacute;tica (semipresencial)</a></p>
+        </li>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/itinerario-adaptacion-ingenieria-tecnica-informatica-grado">Itinerario de adaptaci&oacute;n de Ingenier&iacute;a T&eacute;cnica Inform&aacute;tica a Grado</a></p>
+        </li>
+        <li>
+            <p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/doble-titulacion-ingenieria-informatica-diseno-desarrollo-videojuegos">Doble titulaci&oacute;n en Ingenier&iacute;a Inform&aacute;tica + Dise&ntilde;o y Desarrollo de Videojuegos</a></p>
+        </li>
+    </ul><p style="text-align: justify;">Tambi&eacute;n pertenecen a esta Escuela los m&aacute;steres oficiales en<strong> </strong><a href="https://www.usj.es/estudios/posgrados/masteres/investigacion-y-formacion-avanzada-en-arquitectura">Investigaci&oacute;n y Formaci&oacute;n Avanzada en Arquitectura</a>, y en <a href="https://www.usj.es/estudios/posgrados/masteres/tecnologias-software-avanzadas-para-dispositivos-moviles">Tecnolog&iacute;as Software Avanzadas para Dispositivos M&oacute;vile</a>s. Asimismo, el estudiante puede cursar los t&iacute;tulos propios en <a href="https://www.usj.es/estudios/posgrados/titulos-propios/experto-diseno-avanzado-infoarquitectura-e-ideacion">Dise&ntilde;o Avanzado, Infoarquitectura e Ideaci&oacute;n</a>; <a href="https://www.usj.es/estudios/posgrados/titulos-propios/experto-flujo-trabajo-bim-con-revit">T&iacute;tulo de Experto en Flujo de trabajo BIM con Revit</a>, y <a href="https://www.usj.es/estudios/posgrados/titulos-propios/master-en-big-data">M&aacute;ster en Big Data</a>.</p>
+    <p style="text-align: justify;"><strong>Instalaciones </strong></p>
+    <p style="text-align: justify;">La Escuela se ubica en un edificio de tres plantas con aulas y talleres destinados a la formaci&oacute;n del alumno; entre ellos, el taller de fabricaci&oacute;n digital que ha puesto en marcha el grado en Arquitectura y que trabaja con impresoras 3D para dar servicio no s&oacute;lo a la Universidad, sino tambi&eacute;n a cualquier &aacute;mbito de la sociedad que lo requiera.</p>
+    <p style="text-align: justify;">Esta Escuela tambi&eacute;n cuenta con un Aula Magna, una capilla, salas de reuniones, una cafeter&iacute;a y diferentes aulas para el desarrollo de las clases.</p>
+    <p style="text-align: justify;">Los alumnos que pertenecen a la <strong>Escuela de Arquitectura y Tecnolog&iacute;a</strong> pueden acceder, de igual forma, a las instalaciones del campus deportivo de la Universidad para practicar las distintas modalidades deportivas que se ofrecen en la USJ.</p>
+    <p style="text-align: justify;"><b>Direcci&oacute;n:</b> Campus Universitario Villanueva de G&aacute;llego, Autov&iacute;a A-23, Km 299, 50830 Villanueva de G&aacute;llego, Z&aacute;ragoza, Zaragoza</p>
+    <p style="text-align: justify;"><b>Tel&eacute;fono:</b> 976 06 01 00</p>
+    <p style="text-align: justify;"><b>Horario:</b> Lunes a Viernes de 8:00 a 18:00.</p>
+</div>
+                ]]></description>
+                <styleUrl>#poly-0F9D58-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh5.googleusercontent.com/Mu1M6K6YWXfqhKy5k7MzyVY-gUCrkOs-ZZzCZKvayZSivZ4PwEfsRRU1BWGb1sOzbqzQTSlaDqQd24p8s7IKQ1i4vXFv6z_rGuBStt3RUs2oGO_itma5lNr5vfCFjWICRsT22Ss
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.832555,41.7571842,0
+                                -0.832614,41.7570651,0
+                                -0.8325295,41.7570431,0
+                                -0.8325483,41.7570061,0
+                                -0.8326328,41.7570311,0
+                                -0.8326918,41.7569131,0
+                                -0.8326033,41.7568891,0
+                                -0.8326194,41.756858,0
+                                -0.8326717,41.756876,0
+                                -0.8327293,41.756764,0
+                                -0.8326221,41.756734,0
+                                -0.832606,41.756769,0
+                                -0.8325751,41.75676,0
+                                -0.8325952,41.756722,0
+                                -0.8324544,41.756685,0
+                                -0.8324236,41.756756,0
+                                -0.8325537,41.756794,0
+                                -0.8325349,41.756835,0
+                                -0.8324061,41.756799,0
+                                -0.8323672,41.756872,0
+                                -0.8324115,41.756885,0
+                                -0.8323914,41.7569271,0
+                                -0.8323096,41.7569051,0
+                                -0.8322586,41.7570181,0
+                                -0.8323364,41.7570401,0
+                                -0.8323015,41.7571161,0
+                                -0.832382,41.7571392,0
+                                -0.8324021,41.7571001,0
+                                -0.8324464,41.7571131,0
+                                -0.8324276,41.7571472,0
+                                -0.832555,41.7571842,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name>Facultad de Ciencias de la Salud</name>
+                <description>
+                    <![CDATA[
+                    <div>
+                        <center><img src="https://lh4.googleusercontent.com/YW-Uw5VVxi_Y0qhWDpw8dJl8fdMl7mEEvQkiSX3Ebd5mxaG-GANcrD7l_URJ60HT5obtJHfZF0l3r-s7R8am8rIwJo9P2fftzYPpTu28Dij20oF-k4J3TVdgl5MmeRud0YSC" width="100%" /></center>
+<p style="text-align: justify;">La <strong>Facultad de Ciencias de la Salud</strong> alberga las aulas y talleres dedicados a los grados de: <a href="https://www.usj.es/estudios/grados/farmacia">Farmacia</a>, <a href="https://www.usj.es/estudios/grados/enfermeria">Enfermer&iacute;a</a>, <a href="https://www.usj.es/estudios/grados/fisioterapia">Fisioterapia </a>y <a href="https://www.usj.es/estudios/grados/ciencias-de-la-actividad-fisica-y-del-deporte">Ciencias de la Actividad F&iacute;sica y del Deporte</a>.</p>
+<p style="text-align: justify;">Adem&aacute;s, este edificio tambi&eacute;n es sede de los <a href="https://www.usj.es/estudios/posgrados/masteres">posgrados del &aacute;mbito de la salud</a> y del Instituto del Medio Ambiente y la Sostenibilidad, que aporta una amplia experiencia en la ejecuci&oacute;n de proyectos de investigaci&oacute;n de &aacute;mbito local, nacional e internacional.</p>
+<p style="text-align: justify;">La propuesta formativa de esta Facultad se completa con el desarrollo de un <a href="https://www.usj.es/estudios/doctorados/medio-ambiente">doctorado en Medio Ambiente</a><strong> </strong>de naturaleza trasversal que permite el acceso desde diferentes disciplinas a futuros doctores capaces de investigar en todos los &aacute;mbitos del medio ambiente: metodol&oacute;gicos, tecnol&oacute;gicos y de gesti&oacute;n.</p>
+<p style="text-align: justify;"><strong>Instalaciones </strong></p>
+<p style="text-align: justify;"><strong>La Facultad de Ciencias de la Salud cuenta con tres edificios</strong> y una acotada plaza interior con un total de superficie de cerca de 8.000 m2.</p>
+<p style="text-align: justify;">El primer edificio alberga los <strong>laboratorios de biolog&iacute;a y qu&iacute;mica </strong>equipados con la tecnolog&iacute;a m&aacute;s puntera que impulsan una formaci&oacute;n eminentemente pr&aacute;ctica y crean un entorno real para el aprendizaje de los alumnos.</p>
+<p style="text-align: justify;">A su vez, los cerca de 3.000 m2 &uacute;tiles del primer edificio contienen aulas y talleres dedicados a la docencia y son sede de los Institutos de Medio Ambiente y de Lenguas Modernas.</p>
+<p style="text-align: justify;">En el segundo edificio se encuentra un <strong>Aula Magna</strong> para m&aacute;s de 260 personas que dispone de una cabina de control y una cabina de traducci&oacute;n. Por otra parte, este edificio cuenta con aulas, despachos y talleres dedicados a los cuatro grados que se imparten en el &aacute;mbito de la Salud.</p>
+<p style="text-align: justify;">El tercer y &uacute;ltimo edificio cuenta con 2.800 m2 de superficie construida donde se ubica un <strong>centro de Biomec&aacute;nica Avanzada</strong>, un <strong>centro de Simulaci&oacute;n Cl&iacute;nica</strong>, aulas, talleres y <strong>salas de camillas</strong> para la pr&aacute;ctica de los fisioterapeutas.</p>
+<p style="text-align: justify;"><b>Direcci&oacute;n:</b> Campus Universitario Villanueva de G&aacute;llego, Autov&iacute;a A-23, Km 299, 50830 Villanueva de G&aacute;llego, Z&aacute;ragoza, Zaragoza</p>
+    <p style="text-align: justify;"><b>Tel&eacute;fono:</b> 976 06 01 00</p>
+    <p style="text-align: justify;"><b>Horario:</b> Lunes a Viernes de 8:00 a 18:00.</p>
+</div>
+]]></description>
+                <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh4.googleusercontent.com/YW-Uw5VVxi_Y0qhWDpw8dJl8fdMl7mEEvQkiSX3Ebd5mxaG-GANcrD7l_URJ60HT5obtJHfZF0l3r-s7R8am8rIwJo9P2fftzYPpTu28Dij20oF-k4J3TVdgl5MmeRud0YSC
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.8320186,41.7577114,0
+                                -0.8321258,41.7575693,0
+                                -0.8318362,41.7574773,0
+                                -0.8311844,41.7577274,0
+                                -0.8313453,41.7578495,0
+                                -0.83193,41.7576214,0
+                                -0.8320186,41.7577114,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name>Facultad de Ciencias de la Salud</name>
+                <description>
+                    <![CDATA[
+                    <div>
+                    <center><img src="https://lh3.googleusercontent.com/vOeifuoHIRyNGuSrU9kkdSyuNziSztBtk3eCWoE-cF0pqIRbgViXxEyUdXU9A4k12ilTPAhDuoyipPKIuOh3ZowDKGffULdwd0bGeD8cjKOKyAj_vqTBasZ7cdqTIHBMBcOBzA" width="100%" /></center>
+
+<p style="text-align: justify;">La <strong>Facultad de Ciencias de la Salud</strong> alberga las aulas y talleres dedicados a los grados de: <a href="https://www.usj.es/estudios/grados/farmacia">Farmacia</a>, <a href="https://www.usj.es/estudios/grados/enfermeria">Enfermer&iacute;a</a>, <a href="https://www.usj.es/estudios/grados/fisioterapia">Fisioterapia </a>y <a href="https://www.usj.es/estudios/grados/ciencias-de-la-actividad-fisica-y-del-deporte">Ciencias de la Actividad F&iacute;sica y del Deporte</a>.</p>
+<p style="text-align: justify;">Adem&aacute;s, este edificio tambi&eacute;n es sede de los <a href="https://www.usj.es/estudios/posgrados/masteres">posgrados del &aacute;mbito de la salud</a> y del Instituto del Medio Ambiente y la Sostenibilidad, que aporta una amplia experiencia en la ejecuci&oacute;n de proyectos de investigaci&oacute;n de &aacute;mbito local, nacional e internacional.</p>
+<p style="text-align: justify;">La propuesta formativa de esta Facultad se completa con el desarrollo de un <a href="https://www.usj.es/estudios/doctorados/medio-ambiente">doctorado en Medio Ambiente</a><strong> </strong>de naturaleza trasversal que permite el acceso desde diferentes disciplinas a futuros doctores capaces de investigar en todos los &aacute;mbitos del medio ambiente: metodol&oacute;gicos, tecnol&oacute;gicos y de gesti&oacute;n.</p>
+<p style="text-align: justify;"><strong>Instalaciones </strong></p>
+<p style="text-align: justify;"><strong>La Facultad de Ciencias de la Salud cuenta con tres edificios</strong> y una acotada plaza interior con un total de superficie de cerca de 8.000 m2.</p>
+<p style="text-align: justify;">El primer edificio alberga los <strong>laboratorios de biolog&iacute;a y qu&iacute;mica </strong>equipados con la tecnolog&iacute;a m&aacute;s puntera que impulsan una formaci&oacute;n eminentemente pr&aacute;ctica y crean un entorno real para el aprendizaje de los alumnos.</p>
+<p style="text-align: justify;">A su vez, los cerca de 3.000 m2 &uacute;tiles del primer edificio contienen aulas y talleres dedicados a la docencia y son sede de los Institutos de Medio Ambiente y de Lenguas Modernas.</p>
+<p style="text-align: justify;">En el segundo edificio se encuentra un <strong>Aula Magna</strong> para m&aacute;s de 260 personas que dispone de una cabina de control y una cabina de traducci&oacute;n. Por otra parte, este edificio cuenta con aulas, despachos y talleres dedicados a los cuatro grados que se imparten en el &aacute;mbito de la Salud.</p>
+<p style="text-align: justify;">El tercer y &uacute;ltimo edificio cuenta con 2.800 m2 de superficie construida donde se ubica un <strong>centro de Biomec&aacute;nica Avanzada</strong>, un <strong>centro de Simulaci&oacute;n Cl&iacute;nica</strong>, aulas, talleres y <strong>salas de camillas</strong> para la pr&aacute;ctica de los fisioterapeutas.</p>
+<p style="text-align: justify;"><b>Direcci&oacute;n:</b> Campus Universitario Villanueva de G&aacute;llego, Autov&iacute;a A-23, Km 299, 50830 Villanueva de G&aacute;llego, Z&aacute;ragoza, Zaragoza</p>
+    <p style="text-align: justify;"><b>Tel&eacute;fono:</b> 976 06 01 00</p>
+    <p style="text-align: justify;"><b>Horario:</b> Lunes a Viernes de 8:00 a 18:00.</p>
+</div>
+]]></description>
+                <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh3.googleusercontent.com/vOeifuoHIRyNGuSrU9kkdSyuNziSztBtk3eCWoE-cF0pqIRbgViXxEyUdXU9A4k12ilTPAhDuoyipPKIuOh3ZowDKGffULdwd0bGeD8cjKOKyAj_vqTBasZ7cdqTIHBMBcOBzA
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.8323887,41.7573913,0
+                                -0.8322734,41.7572432,0
+                                -0.8320963,41.7572892,0
+                                -0.83204,41.7571852,0
+                                -0.8320186,41.7571912,0
+                                -0.8319917,41.7571252,0
+                                -0.8319676,41.7571332,0
+                                -0.8319086,41.7570371,0
+                                -0.8318898,41.7570491,0
+                                -0.8318603,41.7569851,0
+                                -0.8318388,41.7569931,0
+                                -0.8317718,41.7568951,0
+                                -0.8317503,41.7569071,0
+                                -0.8317262,41.756849,0
+                                -0.8315679,41.7569131,0
+                                -0.8320293,41.7574173,0
+                                -0.8323887,41.7573913,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name>Facultad de Ciencias de la Salud</name>
+                <description>
+                    <![CDATA[
+                    <div>
+                    <center><img src="https://lh5.googleusercontent.com/AueERgVfDEb8TXK4eXWGT58ou_Y0jT4MQqow0FbQsIU_RyLGXr0z5bOkaXdp8B3exwKBkCjtb7yykD1GCDG-HqM4nnrLfdLd9XTIy-T2-ce6PEp4Evl0DLgIIUv6kSKTLHxMOg" width="100%" /></center>
+
+<p style="text-align: justify;">La <strong>Facultad de Ciencias de la Salud</strong> alberga las aulas y talleres dedicados a los grados de: <a href="https://www.usj.es/estudios/grados/farmacia">Farmacia</a>, <a href="https://www.usj.es/estudios/grados/enfermeria">Enfermer&iacute;a</a>, <a href="https://www.usj.es/estudios/grados/fisioterapia">Fisioterapia </a>y <a href="https://www.usj.es/estudios/grados/ciencias-de-la-actividad-fisica-y-del-deporte">Ciencias de la Actividad F&iacute;sica y del Deporte</a>.</p>
+<p style="text-align: justify;">Adem&aacute;s, este edificio tambi&eacute;n es sede de los <a href="https://www.usj.es/estudios/posgrados/masteres">posgrados del &aacute;mbito de la salud</a> y del Instituto del Medio Ambiente y la Sostenibilidad, que aporta una amplia experiencia en la ejecuci&oacute;n de proyectos de investigaci&oacute;n de &aacute;mbito local, nacional e internacional.</p>
+<p style="text-align: justify;">La propuesta formativa de esta Facultad se completa con el desarrollo de un <a href="https://www.usj.es/estudios/doctorados/medio-ambiente">doctorado en Medio Ambiente</a><strong> </strong>de naturaleza trasversal que permite el acceso desde diferentes disciplinas a futuros doctores capaces de investigar en todos los &aacute;mbitos del medio ambiente: metodol&oacute;gicos, tecnol&oacute;gicos y de gesti&oacute;n.</p>
+<p style="text-align: justify;"><strong>Instalaciones </strong></p>
+<p style="text-align: justify;"><strong>La Facultad de Ciencias de la Salud cuenta con tres edificios</strong> y una acotada plaza interior con un total de superficie de cerca de 8.000 m2.</p>
+<p style="text-align: justify;">El primer edificio alberga los <strong>laboratorios de biolog&iacute;a y qu&iacute;mica </strong>equipados con la tecnolog&iacute;a m&aacute;s puntera que impulsan una formaci&oacute;n eminentemente pr&aacute;ctica y crean un entorno real para el aprendizaje de los alumnos.</p>
+<p style="text-align: justify;">A su vez, los cerca de 3.000 m2 &uacute;tiles del primer edificio contienen aulas y talleres dedicados a la docencia y son sede de los Institutos de Medio Ambiente y de Lenguas Modernas.</p>
+<p style="text-align: justify;">En el segundo edificio se encuentra un <strong>Aula Magna</strong> para m&aacute;s de 260 personas que dispone de una cabina de control y una cabina de traducci&oacute;n. Por otra parte, este edificio cuenta con aulas, despachos y talleres dedicados a los cuatro grados que se imparten en el &aacute;mbito de la Salud.</p>
+<p style="text-align: justify;">El tercer y &uacute;ltimo edificio cuenta con 2.800 m2 de superficie construida donde se ubica un <strong>centro de Biomec&aacute;nica Avanzada</strong>, un <strong>centro de Simulaci&oacute;n Cl&iacute;nica</strong>, aulas, talleres y <strong>salas de camillas</strong> para la pr&aacute;ctica de los fisioterapeutas.</p>
+<p style="text-align: justify;"><b>Direcci&oacute;n:</b> Campus Universitario Villanueva de G&aacute;llego, Autov&iacute;a A-23, Km 299, 50830 Villanueva de G&aacute;llego, Z&aacute;ragoza, Zaragoza</p>
+    <p style="text-align: justify;"><b>Tel&eacute;fono:</b> 976 06 01 00</p>
+    <p style="text-align: justify;"><b>Horario:</b> Lunes a Viernes de 8:00 a 18:00.</p>
+</div>
+]]></description>
+
+                <styleUrl>#poly-FBC02D-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh5.googleusercontent.com/AueERgVfDEb8TXK4eXWGT58ou_Y0jT4MQqow0FbQsIU_RyLGXr0z5bOkaXdp8B3exwKBkCjtb7yykD1GCDG-HqM4nnrLfdLd9XTIy-T2-ce6PEp4Evl0DLgIIUv6kSKTLHxMOg
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.831517,41.7569831,0
+                                -0.8314526,41.7570231,0
+                                -0.8314754,41.7570371,0
+                                -0.8314003,41.7570941,0
+                                -0.8315384,41.7572152,0
+                                -0.8314593,41.7572572,0
+                                -0.8314714,41.7572702,0
+                                -0.8313654,41.7573262,0
+                                -0.8313815,41.7573372,0
+                                -0.8312836,41.7573843,0
+                                -0.831297,41.7573963,0
+                                -0.8311924,41.7574523,0
+                                -0.8312058,41.7574643,0
+                                -0.8311267,41.7574993,0
+                                -0.8311415,41.7575103,0
+                                -0.8310717,41.7575413,0
+                                -0.8311857,41.7576704,0
+                                -0.8317275,41.7572642,0
+                                -0.831517,41.7569831,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name><![CDATA[Facultad de Comunicaci&oacute;n y Ciencias Sociales]]></name>
+                <description>
+                    <![CDATA[
+                    <div>
+                    <center><img src="https://lh3.googleusercontent.com/0LhjDDnrb36TyT9SZtiErVFDqLjmGHOEVjZfCc_W03obOvt0xN7ShpoK7Lhtoi73vYlxrFujOBiaTa2JZiiJLuTewMLGpx_b55v1yJdg0KIyk29spr6hsq7RkY8BGXcuUSFy" width="100%" /></center>
+
+<p style="text-align: justify;">En la <strong>Facultad de Comunicaci&oacute;n y Ciencias Sociales</strong>, situada en el campus de Villanueva de G&aacute;llego, se imparten cinco posgrados, un doctorado y los grados en:</p>
+<ul><li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/periodismo">Periodismo</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/comunicacion-audiovisual">Comunicaci&oacute;n Audiovisual</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/publicidad-relaciones-publicas">Publicidad y Relaciones P&uacute;blicas </a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/traduccion-comunicacion-intercultural">Traducci&oacute;n y Comunicaci&oacute;n Intercultural </a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/educacion-infantil-infant-education">Educaci&oacute;n Infantil - Infant Education </a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/educacion-primaria-primary-education">Educaci&oacute;n Primaria - Primary Education</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/administracion-direccion-empresas-ade">Administraci&oacute;n y Direcci&oacute;n de Empresas</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/derecho">Derecho</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/comunicacion-digital-online">Comunicaci&oacute;n Digital (online)</a></p>
+</li>
+<li>
+<p style="text-align: justify;"><a href="https://www.usj.es/estudios/grados/doble-titulacion-ade-derecho">Doble titulaci&oacute;n en ADE + Derecho</a></p>
+</li>
+</ul><p style="text-align: justify;">Completando la actividad docente, este edificio acoge conferencias, seminarios y proyecciones de cine en su Aula Magna, as&iacute; como exposiciones de pintura, escultura o fotograf&iacute;a en <a href="http://actividadesculturales.usj.es/?page_id=828">Espacio en Blanco</a> del hall de Facultad.</p>
+<p style="text-align: justify;"><strong>Instalaciones</strong></p>
+<p style="text-align: justify;">La <strong>Facultad de Comunicaci&oacute;n y Ciencias Sociales</strong> alberga un estudio de grabaci&oacute;n de radio en directo y un plat&oacute; de televisi&oacute;n, nueve cabinas de edici&oacute;n de v&iacute;deo, y tres estudios de grabaci&oacute;n de radio como valiosos recursos para la preparaci&oacute;n profesional de los alumnos de los <strong>grados de Comunicaci&oacute;n</strong>.</p>
+<p style="text-align: justify;">Adem&aacute;s, las aulas destinadas a las <strong>titulaciones de educaci&oacute;n</strong> est&aacute;n concebidas con un dise&ntilde;o y un mobiliario din&aacute;mico para permitir el uso de variados recursos did&aacute;cticos que permitan cambiar y evolucionar a lo largo del curso. Estas aulas-taller se utilizan como verdaderos espacios de aprendizaje y laboratorios que favorecen la innovaci&oacute;n y la implantaci&oacute;n de las metodolog&iacute;as y las tecnolog&iacute;as que se est&aacute;n definiendo en las tendencias educativas actuales y de futuro.</p>
+<p style="text-align: justify;">Las metodolog&iacute;as innovadoras tambi&eacute;n se reflejan en actividades del <strong>grado de ADE</strong> como el Business Lab. Una iniciativa que fomenta el entrenamiento profesional del alumno mediante debates, charlas con empresarios, visitas a empresas, estudio de casos reales y desarrollo de la inteligencia emocional.</p>
+<p style="text-align: justify;"><b>Direcci&oacute;n:</b> Campus Universitario Villanueva de G&aacute;llego, Autov&iacute;a A-23, Km 299, 50830 Villanueva de G&aacute;llego, Z&aacute;ragoza, Zaragoza</p>
+    <p style="text-align: justify;"><b>Tel&eacute;fono:</b> 976 06 01 00</p>
+    <p style="text-align: justify;"><b>Horario:</b> Lunes a Viernes de 8:00 a 18:00.</p>
+</div>
+]]>
+                </description>
+                <styleUrl>#poly-FF5252-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh3.googleusercontent.com/0LhjDDnrb36TyT9SZtiErVFDqLjmGHOEVjZfCc_W03obOvt0xN7ShpoK7Lhtoi73vYlxrFujOBiaTa2JZiiJLuTewMLGpx_b55v1yJdg0KIyk29spr6hsq7RkY8BGXcuUSFy
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.8323927,41.7565489,0
+                                -0.8327776,41.7562058,0
+                                -0.8326395,41.7561287,0
+                                -0.8325255,41.7560247,0
+                                -0.8324195,41.7560877,0
+                                -0.8325107,41.7561687,0
+                                -0.8324477,41.7562218,0
+                                -0.8323391,41.7561607,0
+                                -0.8322532,41.7562418,0
+                                -0.8323552,41.7563058,0
+                                -0.8323069,41.7563618,0
+                                -0.8321594,41.7563328,0
+                                -0.832103,41.7564268,0
+                                -0.8322626,41.7564649,0
+                                -0.8323927,41.7565489,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name>Campus Deportivo</name>
+                <description>
+                    <![CDATA[
+                    <div>
+                    <center><img src="https://lh3.googleusercontent.com/3uUnRC4Ipukc2tISiK7W7oNC4GIebcSV1YkxCknpeaUVvZAZQDzVqnYQ6byuBCabW9VF06ktUEGjOpjRoDE51qwV4aKllLGhpWlG7utyNc_tkKtDq8buOurY9iJQWmwA4pKeSg" width="100%" /></center>
+
+<p style="text-align: justify;">Los alumnos presenciales de grado y m&aacute;ster de la Universidad San Jorge tienen acceso al <strong>Campus Deportivo</strong> como abonados. Para poder acceder debes dirigirte a la recepci&oacute;n de las <strong>instalaciones deportivas</strong> donde te dar&aacute;n un carnet con derecho a:</p>
+<ul><li style="text-align: justify;">Uso libre de las piscinas que est&eacute;n abiertas al uso en ese momento.</li>
+<li style="text-align: justify;">Uso libre y gratuito, sin necesidad de reserva, de los siguientes espacios: pista polideportiva, campo de f&uacute;tbol 7 y 11, front&oacute;n y pistas de voley playa, siempre y cuando no est&eacute;n alquiladas.</li>
+<li style="text-align: justify;">Reserva de cualquier espacio deportivo cumpliendo una serie de <a href="https://www.usj.es/sites/default/files/Requisitos%20y%20condiciones%20de%20alquiler%20de%20espacios%20deportivos.pdf" target="_blank">requisitos</a>.</li>
+<li style="text-align: justify;">Participar en todas las actividades, competiciones y secciones deportivas organizadas por el Servicio de Actividades Deportivas.</li>
+<li style="text-align: justify;">Disponer de descuentos de abonado en las actividades dirigidas, gimnasio y balneario en el CDM Villanueva de G&aacute;llego.</li>
+<li style="text-align: justify;">Disponer de diverso <a href="https://www.usj.es/sites/default/files/Requisitos%20y%20condiciones%20para%20el%20pr%C3%A9stamo%20de%20material%20deportivo.pdf" target="_blank">material deportivo prestado</a>.</li>
+</ul><p style="text-align: justify;"><strong>Instalaciones del campus deportivo de la Universidad San Jorge:</strong></p>
+<ul><li style="text-align: justify;">Campos de f&uacute;tbol de hierba artificial</li>
+<li style="text-align: justify;">Tenis</li>
+<li style="text-align: justify;">P&aacute;del</li>
+<li style="text-align: justify;">Voley Playa</li>
+<li style="text-align: justify;">Pabell&oacute;n</li>
+<li style="text-align: justify;">Polideportiva exterior</li>
+<li style="text-align: justify;">Front&oacute;n</li>
+<li style="text-align: justify;">Piscinas cubiertas</li>
+<li style="text-align: justify;">Piscinas descubiertas</li>
+<li style="text-align: justify;">Fitness/gimnasio</li>
+<li style="text-align: justify;">Sala de actividades</li>
+<li style="text-align: justify;">Sala polivalente</li>
+<li style="text-align: justify;">Sala Ciclo Indoor</li>
+<li style="text-align: justify;">Spa</li>
+</ul><p style="text-align: justify;">Los usuarios de las instalaciones del campus deportivo deben conocer la <a href="https://www.usj.es/sites/default/files/archivos/revistacdm1617.pdf" target="_blank">"Normativa B&aacute;sica de Uso de las Instalaciones"</a> que establece el Ayuntamiento de Villanueva de G&aacute;llego, as&iacute; como la <a href="https://www.usj.es/sites/default/files/IT-155%20Rev.1%20Instruccion%20Tecnica%20de%20Actuacion%20en%20Caso%20de%20Accidente%20o%20Problema%20de%20Salud.pdf" target="_blank">"Instrucci&oacute;n T&eacute;cnica de Actuaci&oacute;n en Caso de Accidente o Problema de Salud"</a> .</p>
+<p style="text-align: justify;"><strong>Horario de la instalaci&oacute;n:</strong> De lunes a viernes de 9:30 a 22h. S&aacute;bados de 9 a 21h. Domingos de 9 a 14h. El campus deportivo permanecer&aacute; cerrado varios festivos, d&iacute;as diferentes al calendario acad&eacute;mico de la Universidad San Jorge.</p>
+<p style="text-align: justify;">El <strong>balneario Urbano (Spa)</strong> tiene horario y calendario especial.</p>
+<p style="text-align: justify;">Para ver el calendario de festivos y el horario y calendario del balneario Urbano (Spa) puedes consultar el <a href="https://www.usj.es/sites/default/files/archivos/revistacdm1617.pdf" target="_blank">folleto del Campus Deportivo Municipal de Villanueva de G&aacute;llego</a>.</p>
+<p style="text-align: justify;">El <strong>deporte universitario</strong> puede ejercer un papel muy importante en la difusi&oacute;n y concienciaci&oacute;n de los valores del desarrollo sostenible, por eso, el Servicio de Actividades Deportivas de la Universidad San Jorge fomenta las <strong>buenas pr&aacute;cticas ambientales en el uso de las instalaciones deportivas </strong> <a href="https://www.usj.es/sites/default/files/GU%C3%8DA%20DE%20BUENAS%20PR%C3%81CTICAS%20AMBIENTALES%20EN%20EL%20DEPORTE%20UNIVERSITARIO.pdf" target="_blank">"Gu&iacute;a de buenas pr&aacute;cticas ambientales en el deporte universitario"</a>. Para obtener m&aacute;s informaci&oacute;n sobre el deporte sostenible, consultar la <a href="http://www.csd.gob.es/csd/noticias/Deporte-sos" target="_blank">Carta Verde del Deporte Espa&ntilde;ol</a>.</p></div>
+]]>
+                </description>
+
+                <styleUrl>#poly-9C27B0-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh3.googleusercontent.com/3uUnRC4Ipukc2tISiK7W7oNC4GIebcSV1YkxCknpeaUVvZAZQDzVqnYQ6byuBCabW9VF06ktUEGjOpjRoDE51qwV4aKllLGhpWlG7utyNc_tkKtDq8buOurY9iJQWmwA4pKeSg
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.8347061,41.756751,0
+                                -0.8349743,41.7562648,0
+                                -0.8343977,41.7560847,0
+                                -0.8343762,41.7561367,0
+                                -0.8341563,41.7560647,0
+                                -0.8339041,41.7565229,0
+                                -0.8341751,41.7566009,0
+                                -0.8341885,41.7565869,0
+                                -0.8347061,41.756751,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+            <Placemark>
+                <name>Campus Deportivo</name>
+                <description>
+                    <![CDATA[
+                    <div>
+                    <center><img src="https://lh5.googleusercontent.com/f3w974UPaxJ_RhMNIj9iH1z6zfSY8ghg98pkH2uRVMjx9h6QJpAqNCy2D5XZcS3yOWoGNnN9qLPi-REac3Z2oNBK9nz1L11jomIcZe8XvFa-dOtZeXBCF6pw5XDx7O9N2Pp05A" width="100%" /></center>
+
+<p style="text-align: justify;">Los alumnos presenciales de grado y m&aacute;ster de la Universidad San Jorge tienen acceso al <strong>Campus Deportivo</strong> como abonados. Para poder acceder debes dirigirte a la recepci&oacute;n de las <strong>instalaciones deportivas</strong> donde te dar&aacute;n un carnet con derecho a:</p>
+<ul><li style="text-align: justify;">Uso libre de las piscinas que est&eacute;n abiertas al uso en ese momento.</li>
+<li style="text-align: justify;">Uso libre y gratuito, sin necesidad de reserva, de los siguientes espacios: pista polideportiva, campo de f&uacute;tbol 7 y 11, front&oacute;n y pistas de voley playa, siempre y cuando no est&eacute;n alquiladas.</li>
+<li style="text-align: justify;">Reserva de cualquier espacio deportivo cumpliendo una serie de <a href="https://www.usj.es/sites/default/files/Requisitos%20y%20condiciones%20de%20alquiler%20de%20espacios%20deportivos.pdf" target="_blank">requisitos</a>.</li>
+<li style="text-align: justify;">Participar en todas las actividades, competiciones y secciones deportivas organizadas por el Servicio de Actividades Deportivas.</li>
+<li style="text-align: justify;">Disponer de descuentos de abonado en las actividades dirigidas, gimnasio y balneario en el CDM Villanueva de G&aacute;llego.</li>
+<li style="text-align: justify;">Disponer de diverso <a href="https://www.usj.es/sites/default/files/Requisitos%20y%20condiciones%20para%20el%20pr%C3%A9stamo%20de%20material%20deportivo.pdf" target="_blank">material deportivo prestado</a>.</li>
+</ul><p style="text-align: justify;"><strong>Instalaciones del campus deportivo de la Universidad San Jorge:</strong></p>
+<ul><li style="text-align: justify;">Campos de f&uacute;tbol de hierba artificial</li>
+<li style="text-align: justify;">Tenis</li>
+<li style="text-align: justify;">P&aacute;del</li>
+<li style="text-align: justify;">Voley Playa</li>
+<li style="text-align: justify;">Pabell&oacute;n</li>
+<li style="text-align: justify;">Polideportiva exterior</li>
+<li style="text-align: justify;">Front&oacute;n</li>
+<li style="text-align: justify;">Piscinas cubiertas</li>
+<li style="text-align: justify;">Piscinas descubiertas</li>
+<li style="text-align: justify;">Fitness/gimnasio</li>
+<li style="text-align: justify;">Sala de actividades</li>
+<li style="text-align: justify;">Sala polivalente</li>
+<li style="text-align: justify;">Sala Ciclo Indoor</li>
+<li style="text-align: justify;">Spa</li>
+</ul><p style="text-align: justify;">Los usuarios de las instalaciones del campus deportivo deben conocer la <a href="https://www.usj.es/sites/default/files/archivos/revistacdm1617.pdf" target="_blank">"Normativa B&aacute;sica de Uso de las Instalaciones"</a> que establece el Ayuntamiento de Villanueva de G&aacute;llego, as&iacute; como la <a href="https://www.usj.es/sites/default/files/IT-155%20Rev.1%20Instruccion%20Tecnica%20de%20Actuacion%20en%20Caso%20de%20Accidente%20o%20Problema%20de%20Salud.pdf" target="_blank">"Instrucci&oacute;n T&eacute;cnica de Actuaci&oacute;n en Caso de Accidente o Problema de Salud"</a> .</p>
+<p style="text-align: justify;"><strong>Horario de la instalaci&oacute;n:</strong> De lunes a viernes de 9:30 a 22h. S&aacute;bados de 9 a 21h. Domingos de 9 a 14h. El campus deportivo permanecer&aacute; cerrado varios festivos, d&iacute;as diferentes al calendario acad&eacute;mico de la Universidad San Jorge.</p>
+<p style="text-align: justify;">El <strong>balneario Urbano (Spa)</strong> tiene horario y calendario especial.</p>
+<p style="text-align: justify;">Para ver el calendario de festivos y el horario y calendario del balneario Urbano (Spa) puedes consultar el <a href="https://www.usj.es/sites/default/files/archivos/revistacdm1617.pdf" target="_blank">folleto del Campus Deportivo Municipal de Villanueva de G&aacute;llego</a>.</p>
+<p style="text-align: justify;">El <strong>deporte universitario</strong> puede ejercer un papel muy importante en la difusi&oacute;n y concienciaci&oacute;n de los valores del desarrollo sostenible, por eso, el Servicio de Actividades Deportivas de la Universidad San Jorge fomenta las <strong>buenas pr&aacute;cticas ambientales en el uso de las instalaciones deportivas </strong> <a href="https://www.usj.es/sites/default/files/GU%C3%8DA%20DE%20BUENAS%20PR%C3%81CTICAS%20AMBIENTALES%20EN%20EL%20DEPORTE%20UNIVERSITARIO.pdf" target="_blank">"Gu&iacute;a de buenas pr&aacute;cticas ambientales en el deporte universitario"</a>. Para obtener m&aacute;s informaci&oacute;n sobre el deporte sostenible, consultar la <a href="http://www.csd.gob.es/csd/noticias/Deporte-sos" target="_blank">Carta Verde del Deporte Espa&ntilde;ol</a>.</p></div>
+]]></description>
+                <styleUrl>#poly-9C27B0-1200-77</styleUrl>
+                <ExtendedData>
+                    <Data name="gx_media_links">
+                        <value>
+                            https://lh5.googleusercontent.com/f3w974UPaxJ_RhMNIj9iH1z6zfSY8ghg98pkH2uRVMjx9h6QJpAqNCy2D5XZcS3yOWoGNnN9qLPi-REac3Z2oNBK9nz1L11jomIcZe8XvFa-dOtZeXBCF6pw5XDx7O9N2Pp05A
+                        </value>
+                    </Data>
+                </ExtendedData>
+                <Polygon>
+                    <outerBoundaryIs>
+                        <LinearRing>
+                            <tessellate>1</tessellate>
+                            <coordinates>
+                                -0.8352506,41.7558326,0
+                                -0.8345774,41.7556305,0
+                                -0.8343816,41.7560067,0
+                                -0.8348563,41.7561447,0
+                                -0.8348724,41.7561207,0
+                                -0.8350575,41.7561747,0
+                                -0.8352506,41.7558326,0
+                            </coordinates>
+                        </LinearRing>
+                    </outerBoundaryIs>
+                </Polygon>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

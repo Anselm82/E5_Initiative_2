@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">E5 USJ Campus Guide</string>
+    <string name="rectorado">Ed. Rectorado</string>
+    <string name="salud">Fac. Salud</string>
+    <string name="comunicacion">Fac. Comunicacióne</string>
+    <string name="estudiantes">Ed. Estudiantes</string>
+    <string name="logo">USJ Logo</string>
+
+    <string name="details">Details</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="kml_url">http://googlemaps.github.io/kml-samples/morekml/Polygons/Polygons.Google_Campus.kml</string>
+    <string name="title_activity_kml">KMLActivity</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
