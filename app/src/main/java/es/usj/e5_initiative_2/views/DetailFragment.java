@@ -11,12 +11,10 @@ import android.widget.TextView;
 
 import es.usj.e5_initiative_2.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DetailFragment extends Fragment {
 
     private static DetailFragment detailFragment;
+
     private View rootView;
     private WebView wvDetail;
     private TextView tvTitle;

@@ -16,7 +16,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         config.withBackgroundColor(Color.WHITE);
         config.withLogo(R.drawable.universidad_san_jorge);
         config.withTargetActivity(NavigationActivity.class);
-        config.withFooterText("E5 Developers");
+        config.withFooterText(getString(R.string.developers));
         config.getFooterTextView().setPadding(4, 4, 4, 4);
         config.withSplashTimeOut(3000);
         config.getFooterTextView().setTextColor(Color.LTGRAY);

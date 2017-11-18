@@ -1,14 +1,28 @@
 package es.usj.e5_initiative_2.views;
 
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,7 +30,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Polygon;
+import com.google.maps.android.PolyUtil;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.kml.KmlContainer;
@@ -27,9 +41,14 @@ import com.google.maps.android.data.kml.KmlPolygon;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import es.usj.e5_initiative_2.NavigationActivity;
 import es.usj.e5_initiative_2.R;
+import es.usj.e5_initiative_2.data.DataHolder;
+import es.usj.e5_initiative_2.location.LocationUSJProvider;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -38,29 +57,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Context mContext;
     private View view;
+    private FloatingActionButton cameraFab;
+    private LocationUSJProvider locationUSJProvider;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Set<KmlPolygon> polygons;
 
     private static MapFragment instance;
 
     public static Fragment newInstance(Bundle data, Context context) {
         if (instance == null) {
             instance = new MapFragment();
+            instance.polygons = new HashSet<>();
             instance.mContext = context;
+            instance.locationUSJProvider = new LocationUSJProvider(context);
         }
         if (data != null) {
             instance.setArguments(data);
         }
         return instance;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (view == null) {
-            view = inflater.inflate(R.layout.fragment_map, container, false);
-            setRetainInstance(true);
-            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
-        }
-        return view;
     }
 
     @Override
@@ -71,14 +85,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void prepareMap() {
-        mMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
-
-            @Override
-            public void onPolygonClick(Polygon polygon) {
-                polygon.setClickable(true);
-
-            }
-        });
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
     }
 
     @Override
@@ -96,17 +106,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mContext = context;
     }
 
-    public void retrieveFileFromResource() {
+    private void retrieveFileFromResource() {
         try {
             final KmlLayer kmlLayer = new KmlLayer(getMap(), R.raw.campus, mContext);
             kmlLayer.addLayerToMap();
-            moveCameraToKml(kmlLayer);
-            kmlLayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
-                @Override
-                public void onFeatureClick(Feature feature) {
-                    loadDetails(feature.getProperty("name"), feature.getProperty("description"));
-                }
-            });
+            prepareKml(kmlLayer);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (XmlPullParserException e) {
@@ -114,8 +118,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    private void prepareKml(KmlLayer layer) {
+        moveCameraToKml(layer);
+        layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+            @Override
+            public void onFeatureClick(Feature feature) {
+                loadDetails(feature.getProperty("name"), feature.getProperty("description"));
+            }
+        });
+        Iterable<KmlContainer> containers = (List) layer.getContainers();
+        for (KmlContainer container : containers) {
+            Iterable<KmlContainer> containersInside = (List) container.getContainers();
+            for (KmlContainer containerInside : containersInside) {
+                Iterable<KmlPlacemark> placemarks = containerInside.getPlacemarks();
+                for (KmlPlacemark placemark : placemarks) {
+                    KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
+                    polygons.add(polygon);
+                }
+            }
+        }
+
+    }
+
     private void loadDetails(String title, String details) {
-        ((NavigationActivity)getActivity()).loadDetail(title, details);
+        ((NavigationActivity) getActivity()).loadDetail(title, details);
     }
 
     private void moveCameraToKml(KmlLayer kmlLayer) {
@@ -137,4 +163,95 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public GoogleMap getMap() {
         return mMap;
     }
+
+    public boolean isUserInsideKmlLayer(KmlPolygon kmlPolygon) {
+        Location loc = DataHolder.getInstance().get(DataHolder.LOCATION, Location.class);
+        LatLng latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+        boolean result = false;
+        for (List<LatLng> geoObject : kmlPolygon.getGeometryObject()) {
+            if (PolyUtil.containsLocation(latLng, geoObject, false)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    public void updatePosition(Location location) {
+        DataHolder.getInstance().put(DataHolder.LOCATION, location);
+        boolean result = false;
+        for (KmlPolygon polygon : polygons) {
+            if (isUserInsideKmlLayer(polygon)) {
+                result = true;
+            }
+        }
+        if (result) {
+            Toast.makeText(getContext(), R.string.inside_polygon_message, Toast.LENGTH_SHORT).show();
+            cameraFab.setEnabled(true);
+        }
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        registerForLocationUpdates();
+    }
+
+    @Override
+    public void onStop() {
+        unregisterForLocationUpdates();
+        super.onStop();
+    }
+
+    @NonNull
+    private FusedLocationProviderClient getFusedLocationProviderClient() {
+        if (fusedLocationProviderClient == null) {
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        }
+        return fusedLocationProviderClient;
+    }
+
+    private void unregisterForLocationUpdates() {
+        if (fusedLocationProviderClient != null) {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void registerForLocationUpdates() {
+        FusedLocationProviderClient locationProviderClient = getFusedLocationProviderClient();
+        LocationRequest locationRequest = LocationRequest.create();
+        Looper looper = Looper.myLooper();
+        locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, looper);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_map, container, false);
+            setRetainInstance(true);
+            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+            cameraFab = (FloatingActionButton) view.findViewById(R.id.camera_fab);
+            cameraFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((NavigationActivity)getActivity()).loadCamera();
+                }
+            });
+            cameraFab.setEnabled(false);
+        }
+        locationUSJProvider.rastreoGPS();
+        return view;
+    }
+
+    private LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            super.onLocationResult(locationResult);
+            Location lastLocation = locationResult.getLastLocation();
+            updatePosition(lastLocation);
+        }
+    };
+
 }

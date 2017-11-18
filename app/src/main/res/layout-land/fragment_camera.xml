@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextureView
+        android:id="@+id/texture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end">
+
+        <ImageButton
+            android:id="@+id/camera_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="1dp"
+            android:background="@drawable/button"
+            android:contentDescription="@string/submit"
+            android:padding="5dp"
+            android:src="@drawable/ic_photo_camera_black_24dp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
