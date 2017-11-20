@@ -27,7 +27,6 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
-import android.location.Location;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
@@ -42,7 +41,6 @@ import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.Surface;
-import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,8 +66,6 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import es.usj.e5_initiative_2.R;
-import es.usj.e5_initiative_2.data.DataHolder;
-import es.usj.e5_initiative_2.data.RESTRequest;
 
 public class CameraFragment extends Fragment
         implements FragmentCompat.OnRequestPermissionsResultCallback {
@@ -80,7 +76,10 @@ public class CameraFragment extends Fragment
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     private static final int REQUEST_CAMERA_PERMISSION = 1;
     private static final String FRAGMENT_DIALOG = "dialog";
+    private ImageButton imageButton;
     private ImageButton cameraButton;
+    private boolean sent = false;
+    private int index = 0;
 
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -243,7 +242,7 @@ public class CameraFragment extends Fragment
 
         @Override
         public void onImageAvailable(ImageReader reader) {
-            mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile, DataHolder.getInstance().get(DataHolder.LOCATION, Location.class)));
+            mBackgroundHandler.post(new ImageSaver(reader.acquireNextImage(), mFile));
         }
 
     };
@@ -428,16 +427,17 @@ public class CameraFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         cameraButton = (ImageButton) view.findViewById(R.id.camera_button);
-        cameraButton.setVisibility(View.VISIBLE);
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast("Photo is being sent!");
-                takePicture();
-                showToast("Photo sent successfully!");
-                cameraButton.setEnabled(true);
-            }
-        });
+            cameraButton.setVisibility(View.VISIBLE);
+            cameraButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cameraButton.setEnabled(false);
+                    showToast("POI is being sent!");
+                    takePicture();
+                    showToast("POI sent successfully!");
+                    cameraButton.setEnabled(true);
+                }
+            });
         return view;
     }
 
@@ -478,11 +478,10 @@ public class CameraFragment extends Fragment
         //String safeString = encodedString.replace('+', '-').replace('/', '_');
         return encodedString;
     }
-    SurfaceView surfaceView;
+
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         mTextureView = (TextureView) view.findViewById(R.id.texture);
-        surfaceView = view.findViewById(R.id.surfaceView);
     }
 
     @Override
@@ -975,11 +974,9 @@ public class CameraFragment extends Fragment
          * The file we save the image into.
          */
         private final File mFile;
-        private final Location mLocation;
 
-        public ImageSaver(Image image, File file, Location location) {
+        public ImageSaver(Image image, File file) {
             mImage = image;
-            mLocation = location;
             mFile = file;
         }
 
@@ -994,13 +991,12 @@ public class CameraFragment extends Fragment
                 output.write(bytes);
                 mImage.close();
                 String imageString = encode(mFile);
-                RESTRequest request = new RESTRequest("doRequestHere");
-                request.doPost(imageString);
-
+                //RESTRequest request = new RESTRequest(query.query());
+                //request.doPost(image);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if (mImage != null)
+                if(mImage != null)
                     mImage.close();
                 if (null != output) {
                     try {
@@ -1090,4 +1086,5 @@ public class CameraFragment extends Fragment
                     .create();
         }
     }
+
 }
