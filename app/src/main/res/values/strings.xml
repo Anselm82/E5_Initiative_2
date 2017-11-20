@@ -11,7 +11,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="kml_url">http://googlemaps.github.io/kml-samples/morekml/Polygons/Polygons.Google_Campus.kml</string>
+    <string name="kml_url">https://raw.githubusercontent.com/Anselm82/E5_Initiative_2/master/app/src/main/res/raw/campus.kml</string>
     <string name="title_activity_kml">KMLActivity</string>
 
     <string name="action_settings">Settings</string>

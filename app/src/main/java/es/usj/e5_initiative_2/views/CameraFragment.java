@@ -427,17 +427,17 @@ public class CameraFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         cameraButton = (ImageButton) view.findViewById(R.id.camera_button);
-            cameraButton.setVisibility(View.VISIBLE);
-            cameraButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cameraButton.setEnabled(false);
-                    showToast("POI is being sent!");
-                    takePicture();
-                    showToast("POI sent successfully!");
-                    cameraButton.setEnabled(true);
-                }
-            });
+        cameraButton.setVisibility(View.VISIBLE);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraButton.setEnabled(false);
+                showToast("POI is being sent!");
+                takePicture();
+                showToast("POI sent successfully!");
+                cameraButton.setEnabled(true);
+            }
+        });
         return view;
     }
 
@@ -991,12 +991,12 @@ public class CameraFragment extends Fragment
                 output.write(bytes);
                 mImage.close();
                 String imageString = encode(mFile);
-                //RESTRequest request = new RESTRequest(query.query());
+                //RESTRequest request = new RESTRequest(query.query(username));
                 //request.doPost(image);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if(mImage != null)
+                if (mImage != null)
                     mImage.close();
                 if (null != output) {
                     try {

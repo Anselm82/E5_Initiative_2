@@ -22,7 +22,7 @@
             android:contentDescription="@string/submit"
             android:padding="5dp"
             android:src="@drawable/ic_photo_camera_black_24dp"
-            android:visibility="invisible" />
+            />
 
     </RelativeLayout>
 

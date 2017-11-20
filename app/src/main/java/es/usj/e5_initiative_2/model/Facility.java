@@ -3,10 +3,6 @@ package es.usj.e5_initiative_2.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
-/**
- * Created by Anselm on 15/11/17.
- */
-
 public class Facility implements ClusterItem {
     private LatLng position;
     private String title, snippet;

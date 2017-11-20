@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -32,7 +33,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.PolyUtil;
 import com.google.maps.android.data.Feature;
-import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.kml.KmlContainer;
 import com.google.maps.android.data.kml.KmlLayer;
 import com.google.maps.android.data.kml.KmlPlacemark;
@@ -40,7 +40,11 @@ import com.google.maps.android.data.kml.KmlPolygon;
 
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,7 +85,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         prepareMap();
-        retrieveFileFromResource();
+        //retrieveFileFromResource();
+        retrieveFileFromUrl();
     }
 
     private void prepareMap() {
@@ -108,7 +113,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void retrieveFileFromResource() {
         try {
-            final KmlLayer kmlLayer = new KmlLayer(getMap(), R.raw.campus, mContext);
+            final KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.campus, mContext);
             kmlLayer.addLayerToMap();
             prepareKml(kmlLayer);
         } catch (IOException e) {
@@ -118,15 +123,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    private void retrieveFileFromUrl() {
+        new DownloadKmlFile(getString(R.string.kml_url)).execute();
+    }
+
     private void prepareKml(KmlLayer layer) {
         moveCameraToKml(layer);
-        layer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+        layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
                 loadDetails(feature.getProperty("name"), feature.getProperty("description"));
             }
         });
         Iterable<KmlContainer> containers = (List) layer.getContainers();
+        boolean isInside = false;
         for (KmlContainer container : containers) {
             Iterable<KmlContainer> containersInside = (List) container.getContainers();
             for (KmlContainer containerInside : containersInside) {
@@ -134,10 +144,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 for (KmlPlacemark placemark : placemarks) {
                     KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
                     polygons.add(polygon);
+                    if(isUserInsideKmlPolygon(polygon)){
+                        isInside = true;
+                    }
                 }
             }
         }
-
+        setCameraButtonStatus(isInside);
     }
 
     private void loadDetails(String title, String details) {
@@ -156,15 +169,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(builder.build(), width, height, 1);
-        getMap().moveCamera(cu);
-        getMap().animateCamera(CameraUpdateFactory.zoomTo(18), 1000, null);
+        mMap.moveCamera(cu);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 1000, null);
     }
 
-    public GoogleMap getMap() {
-        return mMap;
-    }
-
-    public boolean isUserInsideKmlLayer(KmlPolygon kmlPolygon) {
+    public boolean isUserInsideKmlPolygon(KmlPolygon kmlPolygon) {
         Location loc = DataHolder.getInstance().get(DataHolder.LOCATION, Location.class);
         LatLng latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
         boolean result = false;
@@ -180,13 +189,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         DataHolder.getInstance().put(DataHolder.LOCATION, location);
         boolean result = false;
         for (KmlPolygon polygon : polygons) {
-            if (isUserInsideKmlLayer(polygon)) {
+            if (isUserInsideKmlPolygon(polygon)) {
                 result = true;
             }
         }
+        setCameraButtonStatus(result);
+    }
+
+    public void setCameraButtonStatus(boolean result){
         if (result) {
             Toast.makeText(getContext(), R.string.inside_polygon_message, Toast.LENGTH_SHORT).show();
+            cameraFab.setVisibility(View.VISIBLE);
             cameraFab.setEnabled(true);
+        } else {
+            cameraFab.setEnabled(false);
+            cameraFab.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -239,7 +256,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     ((NavigationActivity)getActivity()).loadCamera();
                 }
             });
-            cameraFab.setEnabled(false);
+            setCameraButtonStatus(false);
         }
         locationUSJProvider.rastreoGPS();
         return view;
@@ -254,4 +271,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     };
 
+    private class DownloadKmlFile extends AsyncTask<String, Void, byte[]> {
+        private final String mUrl;
+
+        public DownloadKmlFile(String url) {
+            mUrl = url;
+        }
+
+        protected byte[] doInBackground(String... params) {
+            try {
+                InputStream is =  new URL(mUrl).openStream();
+                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                int nRead;
+                byte[] data = new byte[16384];
+                while ((nRead = is.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, nRead);
+                }
+                buffer.flush();
+                return buffer.toByteArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(byte[] byteArr) {
+         try {
+                KmlLayer kmlLayer = new KmlLayer(mMap, new ByteArrayInputStream(byteArr),
+                        getActivity().getApplicationContext());
+                kmlLayer.addLayerToMap();
+                prepareKml(kmlLayer);
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

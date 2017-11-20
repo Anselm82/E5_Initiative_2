@@ -64,6 +64,5 @@ public class LocationUSJProvider {
 
     public void registerLocation(Location location) {
         DataHolder.getInstance().put(DataHolder.LOCATION, location);
-        //Location loc = DataHolder.getInstance().get(DataHolder.LOCATION, Location.class);
     }
 }
