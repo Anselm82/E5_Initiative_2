@@ -32,6 +32,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.maps.android.PolyUtil;
+import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.kml.KmlContainer;
 import com.google.maps.android.data.kml.KmlLayer;
@@ -53,6 +54,7 @@ import es.usj.e5_initiative_2.NavigationActivity;
 import es.usj.e5_initiative_2.R;
 import es.usj.e5_initiative_2.data.DataHolder;
 import es.usj.e5_initiative_2.location.LocationUSJProvider;
+import es.usj.e5_initiative_2.model.Facility;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -65,6 +67,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private LocationUSJProvider locationUSJProvider;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Set<KmlPolygon> polygons;
+    private ClusterManager<Facility> mClusterManager;
 
     private static MapFragment instance;
 
@@ -132,7 +135,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
-                loadDetails(feature.getProperty("name"), feature.getProperty("description"));
+                if(feature != null && feature.hasProperties()) {
+                    loadDetails(feature.getProperty("name"), feature.getProperty("description"));
+                }
             }
         });
         Iterable<KmlContainer> containers = (List) layer.getContainers();
@@ -151,6 +156,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         }
         setCameraButtonStatus(isInside);
+        mClusterManager = new ClusterManager<>(getContext(), getMap());
+        getMap().setOnCameraIdleListener(mClusterManager);
+        List<Facility> facilities = (List<Facility>) DataHolder.getInstance().get(DataHolder.FACILITIES, List.class);
+        mClusterManager.addItems(facilities);
     }
 
     private void loadDetails(String title, String details) {
@@ -307,5 +316,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 e.printStackTrace();
             }
         }
+    }
+    public GoogleMap getMap() {
+        return mMap;
     }
 }

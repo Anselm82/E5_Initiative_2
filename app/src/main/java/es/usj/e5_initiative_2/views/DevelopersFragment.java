@@ -61,7 +61,7 @@ public class DevelopersFragment extends Fragment {
         String resourceName = developer == JUANJO ? "data_juanjo" : "data_raul";
         int id = getResources().getIdentifier(resourceName, "array", getActivity().getPackageName());
         String[] developerData = getResources().getStringArray(id);
-        tvName.setText("Name: " + developerData[1]);
+        tvName.setText("Name: " + developerData[0]);
         tvSurname.setText("Surname: " + developerData[1]);
         tvEmail.setText("e-mail: " + developerData[2]);
         tvTeam.setText(developerData[3]);

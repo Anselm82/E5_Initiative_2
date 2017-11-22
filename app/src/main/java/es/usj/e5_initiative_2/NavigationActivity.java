@@ -14,6 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.maps.android.clustering.ClusterManager;
+
+import java.util.List;
+
+import es.usj.e5_initiative_2.data.DataHolder;
+import es.usj.e5_initiative_2.model.Facility;
 import es.usj.e5_initiative_2.views.DetailFragment;
 import es.usj.e5_initiative_2.views.DevelopersFragment;
 import es.usj.e5_initiative_2.views.MapFragment;
@@ -72,7 +78,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     public void loadMap() {
-        Fragment fragment = MapFragment.newInstance(null, this);
+        MapFragment fragment = (MapFragment) MapFragment.newInstance(null, this);
         loadFragment(fragment);
     }
 

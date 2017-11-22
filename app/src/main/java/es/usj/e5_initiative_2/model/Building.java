@@ -2,9 +2,10 @@ package es.usj.e5_initiative_2.model;
 
 import com.google.maps.android.data.kml.KmlLayer;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Building {
+public class Building implements Serializable {
 
     private transient KmlLayer layer;
     private List<Facility> facilities;

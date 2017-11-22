@@ -20,7 +20,7 @@ android {
 
 ext {
     supportLibraryVersion = "26.1.0"
-    playServicesVersion = "11.4.2"
+    playServicesVersion = "11.6.0"
 }
 
 dependencies {
@@ -37,4 +37,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'gr.pantrif:easy-android-splash-screen:0.0.1'
+    compile project(path: ':library')
 }

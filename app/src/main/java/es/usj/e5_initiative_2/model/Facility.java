@@ -3,7 +3,9 @@ package es.usj.e5_initiative_2.model;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
-public class Facility implements ClusterItem {
+import java.io.Serializable;
+
+public class Facility implements ClusterItem, Serializable {
     private LatLng position;
     private String title, snippet;
 
