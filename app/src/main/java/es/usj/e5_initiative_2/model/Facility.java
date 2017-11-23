@@ -29,4 +29,9 @@ public class Facility implements ClusterItem, Serializable {
     public String getSnippet() {
         return snippet;
     }
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
 }

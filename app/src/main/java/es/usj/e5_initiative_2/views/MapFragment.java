@@ -46,6 +46,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,6 +55,7 @@ import es.usj.e5_initiative_2.NavigationActivity;
 import es.usj.e5_initiative_2.R;
 import es.usj.e5_initiative_2.data.DataHolder;
 import es.usj.e5_initiative_2.location.LocationUSJProvider;
+import es.usj.e5_initiative_2.model.Building;
 import es.usj.e5_initiative_2.model.Facility;
 
 
@@ -136,7 +138,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onFeatureClick(Feature feature) {
                 if(feature != null && feature.hasProperties()) {
-                    loadDetails(feature.getProperty("name"), feature.getProperty("description"));
+                    //loadDetails(feature.getProperty("name"), feature.getProperty("description"));
+                    loadBuilding(getBuildingForFeatureName(feature.getProperty("name")));
                 }
             }
         });
@@ -160,6 +163,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         getMap().setOnCameraIdleListener(mClusterManager);
         List<Facility> facilities = (List<Facility>) DataHolder.getInstance().get(DataHolder.FACILITIES, List.class);
         mClusterManager.addItems(facilities);
+    }
+
+    private void loadBuilding(Building building) {
+        if(building != null) {
+            Fragment fragment = BuildingFragment.newInstance(building);
+            ((NavigationActivity) getActivity()).loadFragment(fragment);
+        }
+    }
+
+    private Building getBuildingForFeatureName(String name) {
+        return (Building) DataHolder.getInstance().get(DataHolder.BUILDINGS, HashMap.class).get(name);
     }
 
     private void loadDetails(String title, String details) {
@@ -281,6 +295,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     };
 
     private class DownloadKmlFile extends AsyncTask<String, Void, byte[]> {
+
         private final String mUrl;
 
         public DownloadKmlFile(String url) {

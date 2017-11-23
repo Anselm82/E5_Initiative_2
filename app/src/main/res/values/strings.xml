@@ -26,4 +26,14 @@
     <string name="e5_developers">E5 developers</string>
     <string name="submit">Enviar</string>
     <string name="inside_polygon_message">You can take a picture of the facilities!</string>
+    <string name="lbl_name">Nombre:</string>
+    <string name="lbl_surname">Apellidos:</string>
+    <string name="lbl_email">Email:</string>
+    <string name="lbl_team">Equipo:</string>
+
+    <string name="image">Imagen</string>
+    <string name="information_title">Información</string>
+    <string name="facilities_title">Facilities</string>
+    <string name="schedule_title">Horarios</string>
+    <string name="OK">OK</string>
 </resources>

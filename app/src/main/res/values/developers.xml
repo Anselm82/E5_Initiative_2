@@ -4,12 +4,12 @@
         <item name="name">Juan José</item>
         <item name="surname">Hernández Alonso</item>
         <item name="email">alu.12079@usj.es</item>
-        <item name="team">Equipo 5</item>
+        <item name="team">5</item>
     </string-array>
     <string-array name="data_raul">
         <item name="name">Raúl</item>
         <item name="surname">Lapeña Martí</item>
         <item name="email">rlapena@usj.es</item>
-        <item name="team">Equipo 5</item>
+        <item name="team">5</item>
     </string-array>
 </resources>

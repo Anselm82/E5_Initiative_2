@@ -58,12 +58,13 @@ public class DevelopersFragment extends Fragment {
     }
 
     private void displayDetails(int developer) {
-        String resourceName = developer == JUANJO ? "data_juanjo" : "data_raul";
+        String  resourceName = developer == JUANJO ? "data_juanjo" : "data_raul";
         int id = getResources().getIdentifier(resourceName, "array", getActivity().getPackageName());
         String[] developerData = getResources().getStringArray(id);
-        tvName.setText("Name: " + developerData[0]);
-        tvSurname.setText("Surname: " + developerData[1]);
-        tvEmail.setText("e-mail: " + developerData[2]);
+        tvName.setText(developerData[0]);
+        tvSurname.setText(developerData[1]);
+        tvEmail.setText(developerData[2]);
         tvTeam.setText(developerData[3]);
+
     }
 }
