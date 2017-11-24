@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "es.usj.e5_initiative_2"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -40,4 +40,5 @@ dependencies {
     compile 'gr.pantrif:easy-android-splash-screen:0.0.1'
     compile project(path: ':library')
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile project(path: ':shared')
 }

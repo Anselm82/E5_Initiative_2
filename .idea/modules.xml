@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/E5_Initiative_2.iml" filepath="$PROJECT_DIR$/E5_Initiative_2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearable/wearable.iml" filepath="$PROJECT_DIR$/wearable/wearable.iml" />
     </modules>
   </component>
 </project>

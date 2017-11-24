@@ -24,6 +24,8 @@
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -49,8 +51,7 @@
             android:name=".CameraActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:screenOrientation="userLandscape" >
-        </activity>
+            android:screenOrientation="userLandscape"></activity>
     </application>
 
 </manifest>

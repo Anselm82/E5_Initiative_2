@@ -222,6 +222,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void setCameraButtonStatus(boolean result){
         if (result) {
             Toast.makeText(getContext(), R.string.inside_polygon_message, Toast.LENGTH_SHORT).show();
+            ((NavigationActivity)getActivity()).checkNotifications();
+
             cameraFab.setVisibility(View.VISIBLE);
             cameraFab.setEnabled(true);
         } else {
