@@ -19,15 +19,18 @@ import es.usj.e5_initiative_2.model.Facility;
 /**
  * Clase que realiza las peticiones REST.
  *
- * Created by Anselm on 28/4/17.
+ * Created by Juan José Hernández Alonso on 28/4/17.
  */
-
 public class RESTRequest {
 
     private HttpURLConnection httpURLConnection;
     private URL url;
     private String response;
 
+    /**
+     * Constructor que recibe la URL a consultar.
+     * @param url String url como cadena a consultar.
+     */
     public RESTRequest(String url) {
         try {
             this.url = new URL(url);
@@ -36,10 +39,19 @@ public class RESTRequest {
         }
     }
 
+    /**
+     * Constructor que recibe un objeto URL.
+     * @param url URL a consultar.
+     */
     public RESTRequest(URL url) {
         this.url = url;
     }
 
+    /**
+     * Método para hacer peticiones POST al servidor. Se utilizará en la subida de imágenes al
+     * servidor como JSON.
+     * @param param Objeto a añadir al servidor.
+     */
     public void doPost(Object param) {
         try {
             httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -70,6 +82,35 @@ public class RESTRequest {
         }
     }
 
+    /**
+     * Método para peticiones GET.
+     */
+    public void doGet() {
+        try {
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("Accept", "application/json");
+            InputStream inputStream = httpURLConnection.getInputStream();
+            if (inputStream != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                inputStream.close();
+                response = sb.toString();
+                httpURLConnection.disconnect();
+            }
+        } catch (Exception e) {
+            Log.e("GET", "Error in http connection " + e.toString());
+        }
+    }
+
+    /**
+     * Getter de la respuesta del servidor al realizar una petición.
+     * @return String response.
+     */
     public String getResponse() {
         return response;
     }

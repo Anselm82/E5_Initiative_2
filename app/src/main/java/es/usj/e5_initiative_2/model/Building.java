@@ -6,15 +6,50 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que define la entidad edificio del campus. Implementa serializable ya que debe proceder
+ * de un servicio REST.
+ *
+ * Created by Juan José Hernández Alonso on 17/11/17.
+ */
 public class Building implements Serializable {
 
+    /**
+     * Id del edificio. Podría utilizarse como clave para enlazar JSON y KML.
+     * Debería obtenerse desde bbdd/KML.
+     */
     private int id;
+    /**
+     * Nombre del edificio. Podría utilizarse como clave para enlazar los marcadores (POIs) con la capa
+     * KML (KMLLayer). Debería obtenerse desde bbdd/KML.
+     */
     private String name;
+    /**
+     * Capa no serializable que define la estructura.
+     */
     private transient KmlLayer layer;
+    /**
+     * Lista de instalaciones. Recuperadas desde JSON.
+     */
     private List<Facility> facilities;
+    /**
+     * Lista de imágenes del servidor para este edificio. Lo más sencillo sería crear una estructura
+     * de carpetas basada en el nómbre del edificio o su id, y que fuese allí donde se subiesen
+     * las imágenes capturadas por los usuarios. Son URL COMPLETAS. Se podría hacer una especie de
+     * cache con el singleton y guardando los archivos.
+     * Debería obtenerse desde bbdd.
+     */
     private List<String> images;
+    /**
+     * Descripción de edificio, debería obtenerse desde bbdd.
+     */
     private String description;
+    /**
+     * Horario del edificio, debería obtenerse desde bbdd.
+     */
     private String schedule;
+
+    // GETTERS Y SETTERS
 
     public void setId(int id) {
         this.id = id;

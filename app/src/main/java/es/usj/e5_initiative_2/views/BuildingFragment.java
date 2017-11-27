@@ -24,9 +24,14 @@ import es.usj.e5_initiative_2.R;
 import es.usj.e5_initiative_2.model.Building;
 import es.usj.e5_initiative_2.model.Facility;
 
+/**
+ * Fragmento con el detalle de un edificio. Se mostrará al hacer click sobre la zona KML.
+ *
+ * Created by Juan José Hernández Alonso on 16/11/17.
+ */
 public class BuildingFragment extends Fragment {
 
-    private static BuildingFragment instance;
+    private static BuildingFragment INSTANCE;
     private Building building;
     private ImageView imageView;
     private SeekBar seekBar;
@@ -34,18 +39,22 @@ public class BuildingFragment extends Fragment {
     private ListView lvFacilities;
     private TabHost tabHost;
 
-    public BuildingFragment() {
-    }
-
+    /**
+     * Método que proporciona la instancia singleton del fragmento. Debe usarse en lugar del
+     * constructor.
+     *
+     * @param building Building Objeto con los datos a mostrar.
+     * @return Fragment fragmento genérico.
+     */
     public static Fragment newInstance(Building building) {
-        if (instance == null) {
-            instance =
+        if (INSTANCE == null) {
+            INSTANCE =
                     new BuildingFragment();
         }
         if (building != null) {
-            instance.building = building;
+            INSTANCE.building = building;
         }
-        return instance;
+        return INSTANCE;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,12 +71,18 @@ public class BuildingFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Método que "instala" los valores en los componentes UI.
+     */
     private void install(){
         installImages();
         installTabs();
         installBuilding();
     }
 
+    /**
+     * Método que instala los valores generales de un edificio.
+     */
     private void installBuilding() {
         header.setText(building.getName());
         tvInfo.setText(building.getDescription());
@@ -96,6 +111,9 @@ public class BuildingFragment extends Fragment {
         });
     }
 
+    /**
+     * Método que instala las tabs para cada categoria: información general, instalaciones y horario.
+     */
     private void installTabs() {
         tabHost.setup();
         TabHost.TabSpec spec = tabHost.newTabSpec(getResources().getString(R.string.information_title));
@@ -113,10 +131,15 @@ public class BuildingFragment extends Fragment {
         tabHost.setCurrentTab(0);
     }
 
+    /**
+     * Metodo que carga las imagenes en el componente y configura la barra de búsqueda. Usamos la
+     * librería Picasso para la descarga asíncrona desde la URL y la carga en el componente
+     * ImageView.
+     */
     private void installImages() {
         String url;
         if(building.getImages().size() == 1){
-            url = building.getImages().get(0);//DataHolder.getInstance().get(DataHolder.IMAGES, String.class) + File.separator + building.getId() + File.separator +  building.getImages().get(0);
+            url = building.getImages().get(0);
             if(url.endsWith("null")) {
                 Picasso.with(getContext()).load(R.drawable.no_image_available).into(imageView);
             } else {
@@ -125,12 +148,12 @@ public class BuildingFragment extends Fragment {
         } else if(building.getImages().size() > 1) {
             seekBar.setVisibility(View.VISIBLE);
             seekBar.setMax(building.getImages().size()-1);
-            url = building.getImages().get(0);//DataHolder.getInstance().get(DataHolder.IMAGES, String.class) + File.separator + building.getId() + File.separator +  building.getImages().get(0);
+            url = building.getImages().get(0);
             Picasso.with(getContext()).load(url).into(imageView);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    String image = building.getImages().get(progress);//DataHolder.getInstance().get(DataHolder.IMAGES, String.class) + File.separator + building.getId() + File.separator + building.getImages().get(progress);
+                    String image = building.getImages().get(progress);
                     Picasso.with(getContext()).load(image).into(imageView);
                 }
 

@@ -58,10 +58,13 @@ import es.usj.e5_initiative_2.location.LocationUSJProvider;
 import es.usj.e5_initiative_2.model.Building;
 import es.usj.e5_initiative_2.model.Facility;
 
-
+/**
+ * Clase con el fragmento con mapas de GMap.
+ *
+ * Created by Juan José Hernández Alonso on 01/11/17.
+ */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
-    public static final String TITLE = "MAP";
     private GoogleMap mMap;
     private Context mContext;
     private View view;
@@ -71,31 +74,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Set<KmlPolygon> polygons;
     private ClusterManager<Facility> mClusterManager;
 
-    private static MapFragment instance;
+    private static MapFragment INSTANCE;
 
+    /**
+     * Método que proporciona la instancia singleton del fragmento. Debe usarse en lugar del
+     * constructor.
+     * @param data Bundle de datos para el fragmento.
+     * @param context Contexto necesario para algunas funcionalidades como localización.
+     * @return Fragment fragmento genérico.
+     */
     public static Fragment newInstance(Bundle data, Context context) {
-        if (instance == null) {
-            instance = new MapFragment();
-            instance.polygons = new HashSet<>();
-            instance.mContext = context;
-            instance.locationUSJProvider = new LocationUSJProvider(context);
+        if (INSTANCE == null) {
+            INSTANCE = new MapFragment();
+            INSTANCE.polygons = new HashSet<>();
+            INSTANCE.mContext = context;
+            INSTANCE.locationUSJProvider = new LocationUSJProvider(context);
         }
         if (data != null) {
-            instance.setArguments(data);
+            INSTANCE.setArguments(data);
         }
-        return instance;
+        return INSTANCE;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         prepareMap();
-        //retrieveFileFromResource();
         retrieveFileFromUrl();
     }
 
     private void prepareMap() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.setMyLocationEnabled(true);
@@ -107,7 +120,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (mMap != null) {
             mMap.clear();
         }
-        instance = null;
+        INSTANCE = null;
     }
 
     @Override
@@ -116,6 +129,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mContext = context;
     }
 
+    /**
+     * Método proveniente de la versión 1 en la que el archivo KML está embebido en la aplicación.
+     * Usar retrieveFileFromUrl en su lugar.
+     */
+    @Deprecated
     private void retrieveFileFromResource() {
         try {
             final KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.campus, mContext);
@@ -132,13 +150,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         new DownloadKmlFile(getString(R.string.kml_url)).execute();
     }
 
+    /**
+     * Método que "instala" los listeners en los elementos clickables (Placemarks).
+     * @param layer KmlLayer con los polígonos del campus.
+     */
     private void prepareKml(KmlLayer layer) {
         moveCameraToKml(layer);
         layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
                 if(feature != null && feature.hasProperties()) {
-                    //loadDetails(feature.getProperty("name"), feature.getProperty("description"));
                     loadBuilding(getBuildingForFeatureName(feature.getProperty("name")));
                 }
             }
@@ -165,6 +186,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mClusterManager.addItems(facilities);
     }
 
+    /**
+     * Método que lanzará un fragmento cuando se haga click en una capa.
+     * @param building Building edificio a cargar.
+     */
     private void loadBuilding(Building building) {
         if(building != null) {
             Fragment fragment = BuildingFragment.newInstance(building);
@@ -172,14 +197,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    /**
+     * Recuperamos el edificio utilizando el nombre especificado en el archivo KML.
+     * @param name String nombre de edificio a recuperar.
+     * @return Building edificio solicitado.
+     */
     private Building getBuildingForFeatureName(String name) {
         return (Building) DataHolder.getInstance().get(DataHolder.BUILDINGS, HashMap.class).get(name);
     }
 
+    /**
+     * Método para cargar la información del detalle de la versión 1 de la aplicación. Usar loadBuilding
+     * en su lugar.
+     * @param title String título.
+     * @param details String html con los detalles del elemento.
+     */
+    @Deprecated
     private void loadDetails(String title, String details) {
         ((NavigationActivity) getActivity()).loadDetail(title, details);
     }
 
+    /**
+     * Método que centra la vista en una capa KML.
+     * @param kmlLayer capa en la que centrar la vista.
+     */
     private void moveCameraToKml(KmlLayer kmlLayer) {
         KmlContainer container = kmlLayer.getContainers().iterator().next();
         container = container.getContainers().iterator().next();
@@ -196,6 +237,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 1000, null);
     }
 
+    /**
+     * Método que comprueba si la ubicación del usuario está dentro de una de las zonas KML.
+     * @param kmlPolygon Polígono de un edificio que queremos comprobar.
+     * @return boolean true si el usuario está dentro de la zona, false si no.
+     */
     public boolean isUserInsideKmlPolygon(KmlPolygon kmlPolygon) {
         Location loc = DataHolder.getInstance().get(DataHolder.LOCATION, Location.class);
         LatLng latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
@@ -203,6 +249,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         for (List<LatLng> geoObject : kmlPolygon.getGeometryObject()) {
             if (PolyUtil.containsLocation(latLng, geoObject, false)) {
                 result = true;
+                DataHolder.getInstance().put(DataHolder.IS_INSIDE, result);
             }
         }
         return result;
@@ -216,14 +263,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 result = true;
             }
         }
+        if(result == false && DataHolder.getInstance().get(DataHolder.IS_INSIDE, Boolean.class) == true){
+            ((NavigationActivity)getActivity()).checkNotifications(false);
+            DataHolder.getInstance().put(DataHolder.IS_INSIDE, result);
+        }
         setCameraButtonStatus(result);
     }
 
     public void setCameraButtonStatus(boolean result){
         if (result) {
             Toast.makeText(getContext(), R.string.inside_polygon_message, Toast.LENGTH_SHORT).show();
-            ((NavigationActivity)getActivity()).checkNotifications();
-
+            ((NavigationActivity)getActivity()).checkNotifications(result);
             cameraFab.setVisibility(View.VISIBLE);
             cameraFab.setEnabled(true);
         } else {
@@ -274,7 +324,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             setRetainInstance(true);
             SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
-            cameraFab = (FloatingActionButton) view.findViewById(R.id.camera_fab);
+            cameraFab = view.findViewById(R.id.camera_fab);
             cameraFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -283,7 +333,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             });
             setCameraButtonStatus(false);
         }
-        locationUSJProvider.rastreoGPS();
+        locationUSJProvider.doGPSPositioning();
         return view;
     }
 
@@ -296,6 +346,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     };
 
+    /**
+     * Clase para la descarga del archivo KML desde el servidor en segundo plano. al finalizar
+     * prepara el mapa y lo centra en la vista.
+     */
     private class DownloadKmlFile extends AsyncTask<String, Void, byte[]> {
 
         private final String mUrl;
@@ -334,6 +388,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         }
     }
+
     public GoogleMap getMap() {
         return mMap;
     }

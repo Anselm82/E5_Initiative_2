@@ -14,17 +14,24 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintHorizontal_weight="1"
     tools:context="es.usj.usjcampus.MainActivity">
 
-    <android.support.wear.widget.WearableRecyclerView
-        android:id="@+id/recycler_view"
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="8dp"
+        android:drawableTop="@mipmap/ic_launcher"
+        android:text="@string/usj_campus"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
 </FrameLayout>

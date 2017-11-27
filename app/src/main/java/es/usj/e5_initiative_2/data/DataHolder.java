@@ -10,15 +10,19 @@ import es.usj.e5_initiative_2.model.Building;
 import es.usj.e5_initiative_2.model.Facility;
 
 /**
- * Created by Anselm on 16/11/17.
+ * Clase singleton para almacenar datos y hacerlos accesibles en el resto de la aplicación.
+ *
+ * Created by Juan José Hernández Alonso on 16/11/17.
  */
-
 public class DataHolder {
 
+    public static final String IS_INSIDE = "isInside";
     public static final String LOCATION = "location";
     public static final String FACILITIES = "facilities";
     public static final String BUILDINGS = "buildings";
     public final static String IMAGES = "images";
+
+    private HashMap<String, List<USJObserver>> propertiesObservers;
 
     private static DataHolder INSTANCE;
 
@@ -26,25 +30,80 @@ public class DataHolder {
 
     private DataHolder() {
         data = new HashMap<>();
+        propertiesObservers = new HashMap<>();
     }
 
+    /**
+     * Acceso al Singleton.
+     * @return DataHolder INSTANCE.
+     */
     public static DataHolder getInstance() {
         if(INSTANCE == null){
             INSTANCE = new DataHolder();
-            INSTANCE.init();
+            INSTANCE.put(IS_INSIDE, false);
+            //Deberá eliminarse
+            INSTANCE.initDummyValues();
         }
         return INSTANCE;
     }
 
+    /**
+     * Método que nos permite recuperar y hacer un casting directo del objeto.
+     * @param key String clave de la propiedad almacenada.
+     * @param clazz Class clase a la que hacer el casting del valor recuperado.
+     * @param <T> Genérico que se corresponderá con la clase pasada como parámetro.
+     * @return Objeto casteado a la clase pasada como parámetro almacenado en una clave dada.
+     */
     public <T> T get(String key, Class<T> clazz) {
-        return clazz.cast(getInstance().data.get(key));
+        return clazz.cast(data.get(key));
     }
 
+    /**
+     * Método para añadir valores al mapa.
+     * @param key String clave para acceder al valor.
+     * @param value Object valor que se almacenará en esa clave.
+     */
     public void put(String key, Object value) {
-        getInstance().data.put(key, value);
+        data.put(key, value);
+        List<USJObserver> observers = propertiesObservers.get(key);
+        if(observers != null && !observers.isEmpty()) {
+            for (USJObserver observer: observers) {
+                observer.update();
+            }
+        }
     }
 
-    private void init(){
+    /**
+     * Método para añadir observadores a propiedades concretas del singleton.
+     * @param key String clave de la propiedad.
+     * @param observer Observador a añadir.
+     */
+    public void addObserver(String key, USJObserver observer){
+        List<USJObserver> observers = propertiesObservers.get(key);
+        if(observer == null) {
+            observers = new ArrayList<>();
+            propertiesObservers.put(key, observers);
+        }
+        observers.add(observer);
+    }
+
+    /**
+     * Método para eliminar un observador de la propiedad.
+     * @param key String nombre de la propiedad a eliminar.
+     * @param observer Observer a eliminar.
+     */
+    public void removeObserver(String key, USJObserver observer) {
+        List<USJObserver> observers = propertiesObservers.get(key);
+        if(observer != null && !observers.isEmpty()) {
+            observers.remove(observer);
+        }
+    }
+
+    /**
+     * Método de inicialización con valores de prueba. Este debería desaparecer ya que los elementos
+     * se van a recuperar desde internet y el API REST.
+     */
+    private void initDummyValues(){
         HashMap<String, Building> buildings = new HashMap<>();
         for(int i = 0; i < 3; i++){
             Building b = new Building();
@@ -68,6 +127,8 @@ public class DataHolder {
         put(FACILITIES, facilities);
     }
 
+
+    // EN LA VERSIÓN FINAL ESTOS MÉTODOS DEBERÁN DESAPARECER. Solo se usan para generar lat y lng aleatorias.
     private double getRandomLng() {
         return getRandomNum(-0.837628, -0.831057);
     }

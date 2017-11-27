@@ -11,9 +11,14 @@ import android.widget.TextView;
 
 import es.usj.e5_initiative_2.R;
 
+/**
+ * Clase utilizada en la versión 1 de la aplicación. Usar BuildingFragment en su lugar.
+ * Created by Juan José Hernández Alonso on 01/11/17.
+ */
+@Deprecated
 public class DetailFragment extends Fragment {
 
-    private static DetailFragment detailFragment;
+    private static DetailFragment INSTANCE;
 
     private View rootView;
     private WebView wvDetail;
@@ -21,21 +26,18 @@ public class DetailFragment extends Fragment {
     private String data;
     private String title;
 
-    public DetailFragment() {
-    }
-
     public static Fragment newInstance(String title, String data) {
-        if (detailFragment == null) {
-            detailFragment =
+        if (INSTANCE == null) {
+            INSTANCE =
                     new DetailFragment();
         }
         if (data != null) {
-            detailFragment.data = data;
+            INSTANCE.data = data;
         }
         if (title != null) {
-            detailFragment.title = title;
+            INSTANCE.title = title;
         }
-        return detailFragment;
+        return INSTANCE;
     }
 
     @Override
@@ -58,6 +60,6 @@ public class DetailFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        detailFragment = null;
+        INSTANCE = null;
     }
 }

@@ -32,13 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity
-            android:name=".USJMainActivity"
-            android:label="USJ Campus"
-            android:taskAffinity="">
-        </activity>
     </application>
 
 </manifest>

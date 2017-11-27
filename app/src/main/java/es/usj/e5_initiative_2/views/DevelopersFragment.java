@@ -11,22 +11,30 @@ import android.widget.TextView;
 
 import es.usj.e5_initiative_2.R;
 
+/**
+ * Clase que define el fragmento para la visualización de los perfiles de los desarrolladores.
+ * Created by Juan José Hernández Alonso on 16/11/17.
+ */
 public class DevelopersFragment extends Fragment {
 
-    private static DevelopersFragment fragment;
+    private static DevelopersFragment INSTANCE;
     private static final int JUANJO = 0;
     private static final int RAUL = 1;
     private View rootView;
     private TextView tvName, tvSurname, tvEmail, tvTeam;
     private ImageButton imgJuanjo, imgRaul;
 
-    public DevelopersFragment() {}
-
-    public static DevelopersFragment newInstance() {
-        if (fragment == null) {
-            fragment = new DevelopersFragment();
+    /**
+     * Método que proporciona la instancia singleton del fragmento. Debe usarse en lugar del
+     * constructor.
+     *
+     * @return Fragment fragmento genérico.
+     */
+    public static Fragment newInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new DevelopersFragment();
         }
-        return fragment;
+        return INSTANCE;
     }
 
     @Override
@@ -57,6 +65,10 @@ public class DevelopersFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Método que enlaza los valores desde un xml dependiendo el desarrollador seleccionado.
+     * @param developer int Valor que identifica al desarrollador.
+     */
     private void displayDetails(int developer) {
         String  resourceName = developer == JUANJO ? "data_juanjo" : "data_raul";
         int id = getResources().getIdentifier(resourceName, "array", getActivity().getPackageName());
@@ -65,6 +77,5 @@ public class DevelopersFragment extends Fragment {
         tvSurname.setText(developerData[1]);
         tvEmail.setText(developerData[2]);
         tvTeam.setText(developerData[3]);
-
     }
 }

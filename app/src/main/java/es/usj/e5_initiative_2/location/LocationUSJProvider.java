@@ -13,19 +13,29 @@ import android.support.v4.app.ActivityCompat;
 import es.usj.e5_initiative_2.data.DataHolder;
 
 /**
- * Created by Anselm on 16/11/17.
+ * Clase que provee de localización a la aplicación.
+ *
+ * Created by Juan José Hernández Alonso on 16/11/17.
  */
-
 public class LocationUSJProvider {
     private LocationManager locManager;
     private LocationListener locListener;
     private Context ctx;
 
+    /**
+     * Constructor con los parámetros necesarios para el posicionamiento.
+     * @param ctx Contexto o Activity de la aplicación.
+     */
     public LocationUSJProvider(Context ctx) {
         this.ctx = ctx;
     }
 
-    public void rastreoGPS() {
+    /**
+     * Método que realiza la configuración del servicio de localización, comprobando permisos,
+     * última posición conocida, inicializa el listener y establece la frecuencia
+     * actualizaciones.
+     */
+    public void doGPSPositioning() {
         locManager =
                 (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -62,6 +72,10 @@ public class LocationUSJProvider {
                 0, locListener);
     }
 
+    /**
+     * Método que almacena la ubicación en el singleton.
+     * @param location Location con la ubicación recuperada.
+     */
     public void registerLocation(Location location) {
         DataHolder.getInstance().put(DataHolder.LOCATION, location);
     }

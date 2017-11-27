@@ -67,6 +67,13 @@ import java.util.concurrent.TimeUnit;
 
 import es.usj.e5_initiative_2.R;
 
+
+/**
+ * Fragmento que define la cámara. Solo se muestra cuando un usuario está dentro de una capa KML.
+ * Lo más importante sucede en la línea 437 y sucesivas. El resto está extraído de un ejemplo del
+ * manejo del API 2 de la cámara: https://github.com/googlesamples/android-Camera2Basic
+ * Created by Juan José Hernández Alonso on 16/11/17.
+ */
 public class CameraFragment extends Fragment
         implements FragmentCompat.OnRequestPermissionsResultCallback {
 
@@ -210,7 +217,6 @@ public class CameraFragment extends Fragment
                 activity.finish();
             }
         }
-
     };
 
     /**
@@ -417,7 +423,7 @@ public class CameraFragment extends Fragment
         }
     }
 
-    public static CameraFragment newInstance() {
+    public static Fragment newInstance() {
         return new CameraFragment();
     }
 
@@ -962,7 +968,7 @@ public class CameraFragment extends Fragment
     }
 
     /**
-     * Saves a JPEG {@link Image} into the specified {@link File}.
+     * Tarea que se ejecutará en segundo plano y que realizará el guardado de la imagen en archivo.
      */
     private static class ImageSaver implements Runnable {
 

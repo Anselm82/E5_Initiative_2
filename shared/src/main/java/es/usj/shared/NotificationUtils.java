@@ -13,22 +13,22 @@ public class NotificationUtils {
 
     public static String createNotificationChannel(
             Context context,
-            MockDatabase.MockNotificationData mockNotificationData) {
+            NotificationDatabase.NotificationData notificationData) {
 
         // NotificationChannels are required for Notifications on O (API 26) and above.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             // The id of the channel.
-            String channelId = mockNotificationData.getChannelId();
+            String channelId = notificationData.getChannelId();
 
             // The user-visible name of the channel.
-            CharSequence channelName = mockNotificationData.getChannelName();
+            CharSequence channelName = notificationData.getChannelName();
             // The user-visible description of the channel.
-            String channelDescription = mockNotificationData.getChannelDescription();
-            int channelImportance = mockNotificationData.getChannelImportance();
-            boolean channelEnableVibrate = mockNotificationData.isChannelEnableVibrate();
+            String channelDescription = notificationData.getChannelDescription();
+            int channelImportance = notificationData.getChannelImportance();
+            boolean channelEnableVibrate = notificationData.isChannelEnableVibrate();
             int channelLockscreenVisibility =
-                    mockNotificationData.getChannelLockscreenVisibility();
+                    notificationData.getChannelLockscreenVisibility();
 
             // Initializes NotificationChannel.
             NotificationChannel notificationChannel =

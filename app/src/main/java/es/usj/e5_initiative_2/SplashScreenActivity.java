@@ -7,6 +7,9 @@ import android.view.View;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
+/**
+ * Clase que utiliza una librería para la configuración de un SplashScreen.
+ */
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
@@ -18,9 +21,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         config.withTargetActivity(NavigationActivity.class);
         config.withFooterText(getString(R.string.developers));
         config.getFooterTextView().setPadding(4, 4, 4, 4);
-        config.withSplashTimeOut(3000);
-        config.getFooterTextView().setTextColor(Color.LTGRAY);
+        config.withSplashTimeOut(2000);
+        config.getFooterTextView().setTextColor(Color.DKGRAY);
         View view = config.create();
         setContentView(view);
     }
+
 }

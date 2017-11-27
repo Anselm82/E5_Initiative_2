@@ -10,6 +10,11 @@ import android.widget.Toast;
 
 import es.usj.e5_initiative_2.views.CameraFragment;
 
+/**
+ * Clase que define la actividad que lanzará la cámara.
+ *
+ * Created by Juan José Hernández Alonso on 16/11/17.
+ */
 public class CameraActivity extends AppCompatActivity {
 
     @Override

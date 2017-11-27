@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 import es.usj.e5_initiative_2.NavigationActivity;
 import es.usj.e5_initiative_2.R;
-import es.usj.shared.MockDatabase;
+import es.usj.shared.NotificationDatabase;
 
 /**
  * Created by Anselm on 24/11/17.
@@ -31,13 +31,13 @@ public class USJIntentService extends IntentService {
     private NotificationCompat.Builder recreateBuilderWithBigTextStyle() {
 
         // Get your data
-        MockDatabase.USJCampusNotification usjCampusNotification = MockDatabase.getUSJCampusNotification();
+        NotificationDatabase.USJCampusNotification usjCampusNotification = NotificationDatabase.getUSJCampusEntranceNotification();
 
         // Build the BIG_TEXT_STYLE
         NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle()
-                .bigText(usjCampusNotification.getBigText())
-                .setBigContentTitle(usjCampusNotification.getBigContentTitle())
-                .setSummaryText(usjCampusNotification.getSummaryText());
+                .bigText(usjCampusNotification.getText())
+                .setBigContentTitle(usjCampusNotification.getTitle())
+                .setSummaryText(usjCampusNotification.getSummary());
 
         // Set up main Intent for notification
         Intent notifyIntent = new Intent(this, NavigationActivity.class);

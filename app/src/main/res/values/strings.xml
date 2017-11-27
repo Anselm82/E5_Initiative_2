@@ -36,4 +36,5 @@
     <string name="facilities_title">Facilities</string>
     <string name="schedule_title">Horarios</string>
     <string name="OK">OK</string>
+    <string name="notifications_needed">You need to enable notifications for this app</string>
 </resources>

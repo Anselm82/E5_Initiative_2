@@ -26,9 +26,14 @@ import es.usj.e5_initiative_2.location.GlobalNotificationBuilder;
 import es.usj.e5_initiative_2.views.DetailFragment;
 import es.usj.e5_initiative_2.views.DevelopersFragment;
 import es.usj.e5_initiative_2.views.MapFragment;
-import es.usj.shared.MockDatabase;
+import es.usj.shared.NotificationDatabase;
 import es.usj.shared.NotificationUtils;
 
+/**
+ * Clase con la Activity para la navegación de la aplicación.
+ *
+ * Created by Juan José Hernández Alonso on 01/11/17.
+ */
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public static final int NOTIFICATION_ID = 888;
@@ -83,20 +88,36 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Método para cargar el fragmento mapa.
+     */
     public void loadMap() {
         MapFragment fragment = (MapFragment) MapFragment.newInstance(null, this);
         loadFragment(fragment);
     }
 
+    /**
+     * Método para cargar el fragmento desarrolladores.
+     */
     public void loadDevelopers() {
         Fragment fragment = DevelopersFragment.newInstance();
         loadFragment(fragment);
     }
 
+    /**
+     * Método para cargar ña activity de camara.
+     */
     public void loadCamera() {
         startActivity(new Intent(this, CameraActivity.class));
     }
 
+    /**
+     * Método para cargar el fragmento detalle. Perteneciente a la versión 1 de la aplicación.
+     * Usar loadBuilding en su lugar.
+     * @param title String título del fragmento.
+     * @param data String HTML con los datos del detalle a visualizar.
+     */
+    @Deprecated
     public void loadDetail(String title, String data) {
         Fragment detailFragment = DetailFragment.newInstance(title, data);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -110,6 +131,9 @@ public class NavigationActivity extends AppCompatActivity
         drawer.closeDrawers();
     }
 
+    /**
+     * Método para cargar un fragmento genérico.
+     */
     public void loadFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -126,66 +150,50 @@ public class NavigationActivity extends AppCompatActivity
         super.onRestart();
     }
 
+    // BLOQUE PARA LAS NOTIFICACIONES DE LA APLICACIÓN
+
     private NotificationManagerCompat mNotificationManagerCompat;
 
-    public void checkNotifications() {
+    public void checkNotifications(boolean entering) {
         boolean areNotificationsEnabled = mNotificationManagerCompat.areNotificationsEnabled();
 
         if (!areNotificationsEnabled) {
-            // Because the user took an action to create a notification, we create a prompt to let
-            // the user re-enable notifications for this application again.
             Snackbar snackbar = Snackbar
                     .make(navigationView
                             ,
-                            "You need to enable notifications for this app",
+                            R.string.notifications_needed,
                             Snackbar.LENGTH_LONG)
                     .setAction("ENABLE", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // Links to this app's notification settings
                             openNotificationSettingsForApp();
                         }
                     });
             snackbar.show();
             return;
         }
-        generateBigTextStyleNotification();
+        generateUSJNotification(entering);
     }
 
-    private void generateBigTextStyleNotification() {
+    /**
+     * Método que genera una notificación cuando entramos o salimos de un edificio del campus.
+     */
+    private void generateUSJNotification(boolean entering) {
 
-        // Main steps for building a BIG_TEXT_STYLE notification:
-        //      0. Get your data
-        //      1. Create/Retrieve Notification Channel for O and beyond devices (26+)
-        //      2. Build the BIG_TEXT_STYLE
-        //      3. Set up main Intent for notification
-        //      4. Create additional Actions for the Notification
-        //      5. Build and issue the notification
+        NotificationDatabase.USJCampusNotification usjCampusNotification;
+        if(entering)
+            usjCampusNotification = NotificationDatabase.getUSJCampusEntranceNotification();
+        else
+            usjCampusNotification = NotificationDatabase.getUSJCampusExitNotification();
 
-        // 0. Get your data (everything unique per Notification).
-        MockDatabase.USJCampusNotification usjCampusNotification =
-                MockDatabase.getUSJCampusNotification();
-
-        // 1. Create/Retrieve Notification Channel for O and beyond devices (26+).
         String notificationChannelId =
                 NotificationUtils.createNotificationChannel(this, usjCampusNotification);
-
-
-        // 2. Build the BIG_TEXT_STYLE.
         NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle()
-                // Overrides ContentText in the big form of the template.
-                .bigText(usjCampusNotification.getBigText())
-                // Overrides ContentTitle in the big form of the template.
-                .setBigContentTitle(usjCampusNotification.getBigContentTitle())
-                // Summary line after the detail section in the big form of the template.
-                // Note: To improve readability, don't overload the user with info. If Summary Text
-                // doesn't add critical information, you should skip it.
-                .setSummaryText(usjCampusNotification.getSummaryText());
-
-
+                .bigText(usjCampusNotification.getText())
+                .setBigContentTitle(usjCampusNotification.getTitle())
+                .setSummaryText(usjCampusNotification.getSummary());
         Intent notifyIntent = new Intent(this, SplashScreenActivity.class);
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         PendingIntent notifyPendingIntent =
                 PendingIntent.getActivity(
                         this,
@@ -200,16 +208,13 @@ public class NavigationActivity extends AppCompatActivity
         GlobalNotificationBuilder.setNotificationCompatBuilderInstance(notificationCompatBuilder);
 
         Notification notification = notificationCompatBuilder
-                // BIG_TEXT_STYLE sets title and content for API 16 (4.1 and after).
                 .setStyle(bigTextStyle)
-                // Title for API <16 (4.0 and below) devices.
                 .setContentTitle(usjCampusNotification.getContentTitle())
-                // Content for API <24 (7.0 and below) devices.
                 .setContentText(usjCampusNotification.getContentText())
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_alarm_white_48dp)
                 .setLargeIcon(BitmapFactory.decodeResource(
                         getResources(),
-                        R.drawable.ic_alarm_white_48dp))
+                        R.mipmap.ic_launcher))
                 .setContentIntent(notifyPendingIntent)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary))
