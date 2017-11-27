@@ -1,7 +1,5 @@
 package es.usj.e5_initiative_2.model;
 
-import com.google.maps.android.data.kml.KmlLayer;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +22,6 @@ public class Building implements Serializable {
      * KML (KMLLayer). Debería obtenerse desde bbdd/KML.
      */
     private String name;
-    /**
-     * Capa no serializable que define la estructura.
-     */
-    private transient KmlLayer layer;
     /**
      * Lista de instalaciones. Recuperadas desde JSON.
      */
@@ -67,10 +61,6 @@ public class Building implements Serializable {
         this.images = images;
     }
 
-    public void setLayer(KmlLayer layer) {
-        this.layer = layer;
-    }
-
     public void setSchedule(String schedule) {
         this.schedule = schedule;
     }
@@ -99,10 +89,6 @@ public class Building implements Serializable {
 
     public String getDescription() {
         return description;
-    }
-
-    public KmlLayer getLayer() {
-        return layer;
     }
 
     public String getSchedule() {

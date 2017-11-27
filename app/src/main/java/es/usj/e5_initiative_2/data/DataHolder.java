@@ -16,13 +16,25 @@ import es.usj.e5_initiative_2.model.Facility;
  */
 public class DataHolder {
 
+    /**
+     * METODOS a implementar por Raúl junto con el servidor y el API. Para convertir JSON lo mejor
+     * es usar clases heredadas del converter para las clases Facility y Building.
+     * Luego, por el campo decidido (nombre o id) enlazarlos entre si.
+     * Finalmente, cuando se recuperan las capas, acceder a los edificios y asociarlas.
+     */
+    private void init() {
+        /**
+         getBuildingsFromJSON();
+         getFacilitiesFromJSON();
+         bindFacilitiesToBuildings();
+         bindKMLLayerToBuildings();
+         **/
+    }
+
     public static final String IS_INSIDE = "isInside";
     public static final String LOCATION = "location";
     public static final String FACILITIES = "facilities";
     public static final String BUILDINGS = "buildings";
-    public final static String IMAGES = "images";
-
-    private HashMap<String, List<USJObserver>> propertiesObservers;
 
     private static DataHolder INSTANCE;
 
@@ -30,7 +42,6 @@ public class DataHolder {
 
     private DataHolder() {
         data = new HashMap<>();
-        propertiesObservers = new HashMap<>();
     }
 
     /**
@@ -65,39 +76,10 @@ public class DataHolder {
      */
     public void put(String key, Object value) {
         data.put(key, value);
-        List<USJObserver> observers = propertiesObservers.get(key);
-        if(observers != null && !observers.isEmpty()) {
-            for (USJObserver observer: observers) {
-                observer.update();
-            }
-        }
     }
 
-    /**
-     * Método para añadir observadores a propiedades concretas del singleton.
-     * @param key String clave de la propiedad.
-     * @param observer Observador a añadir.
-     */
-    public void addObserver(String key, USJObserver observer){
-        List<USJObserver> observers = propertiesObservers.get(key);
-        if(observer == null) {
-            observers = new ArrayList<>();
-            propertiesObservers.put(key, observers);
-        }
-        observers.add(observer);
-    }
+    // EN LA VERSIÓN FINAL ESTOS MÉTODOS DEBERÁN DESAPARECER. Solo se usan para generar lat y lng aleatorias.
 
-    /**
-     * Método para eliminar un observador de la propiedad.
-     * @param key String nombre de la propiedad a eliminar.
-     * @param observer Observer a eliminar.
-     */
-    public void removeObserver(String key, USJObserver observer) {
-        List<USJObserver> observers = propertiesObservers.get(key);
-        if(observer != null && !observers.isEmpty()) {
-            observers.remove(observer);
-        }
-    }
 
     /**
      * Método de inicialización con valores de prueba. Este debería desaparecer ya que los elementos
@@ -128,7 +110,7 @@ public class DataHolder {
     }
 
 
-    // EN LA VERSIÓN FINAL ESTOS MÉTODOS DEBERÁN DESAPARECER. Solo se usan para generar lat y lng aleatorias.
+
     private double getRandomLng() {
         return getRandomNum(-0.837628, -0.831057);
     }

@@ -13,7 +13,8 @@ import es.usj.e5_initiative_2.R;
 
 /**
  * Clase que define el fragmento para la visualización de los perfiles de los desarrolladores.
- * Created by Juan José Hernández Alonso on 16/11/17.
+ *
+ * Created by Juan José Hernández Alonso on 24/11/17.
  */
 public class DevelopersFragment extends Fragment {
 

@@ -2,7 +2,6 @@ package es.usj.e5_initiative_2.views;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -61,7 +60,7 @@ import es.usj.e5_initiative_2.model.Facility;
 /**
  * Clase con el fragmento con mapas de GMap.
  *
- * Created by Juan José Hernández Alonso on 01/11/17.
+ * Created by Juan José Hernández Alonso on 07/11/17.
  */
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
@@ -151,7 +150,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     /**
-     * Método que "instala" los listeners en los elementos clickables (Placemarks).
+     * Método que "instala" los listeners en los elementos clickables (Placemarks). Es muy IMPORTANTE
+     * que el nombre sea el mismo que el utilizado en el JSON, ya sea id o nombre del edificio.
      * @param layer KmlLayer con los polígonos del campus.
      */
     private void prepareKml(KmlLayer layer) {
@@ -159,7 +159,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
-                if(feature != null && feature.hasProperties()) {
+                if (feature != null && feature.hasProperties()) {
                     loadBuilding(getBuildingForFeatureName(feature.getProperty("name")));
                 }
             }
@@ -173,7 +173,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 for (KmlPlacemark placemark : placemarks) {
                     KmlPolygon polygon = (KmlPolygon) placemark.getGeometry();
                     polygons.add(polygon);
-                    if(isUserInsideKmlPolygon(polygon)){
+                    if (isUserInsideKmlPolygon(polygon)) {
                         isInside = true;
                     }
                 }
@@ -191,7 +191,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
      * @param building Building edificio a cargar.
      */
     private void loadBuilding(Building building) {
-        if(building != null) {
+        if (building != null) {
             Fragment fragment = BuildingFragment.newInstance(building);
             ((NavigationActivity) getActivity()).loadFragment(fragment);
         }
@@ -263,20 +263,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 result = true;
             }
         }
-        if(result == false && DataHolder.getInstance().get(DataHolder.IS_INSIDE, Boolean.class) == true){
-            ((NavigationActivity)getActivity()).checkNotifications(false);
-            DataHolder.getInstance().put(DataHolder.IS_INSIDE, result);
-        }
         setCameraButtonStatus(result);
     }
 
-    public void setCameraButtonStatus(boolean result){
+    public void setCameraButtonStatus(boolean result) {
         if (result) {
             Toast.makeText(getContext(), R.string.inside_polygon_message, Toast.LENGTH_SHORT).show();
-            ((NavigationActivity)getActivity()).checkNotifications(result);
+            ((NavigationActivity) getActivity()).checkNotifications(result);
             cameraFab.setVisibility(View.VISIBLE);
             cameraFab.setEnabled(true);
         } else {
+            if (DataHolder.getInstance().get(DataHolder.IS_INSIDE, Boolean.class) == true) {
+                ((NavigationActivity) getActivity()).checkNotifications(result);
+                DataHolder.getInstance().put(DataHolder.IS_INSIDE, result);
+            }
             cameraFab.setEnabled(false);
             cameraFab.setVisibility(View.INVISIBLE);
         }
@@ -309,11 +309,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    @SuppressLint("MissingPermission")
+
     private void registerForLocationUpdates() {
         FusedLocationProviderClient locationProviderClient = getFusedLocationProviderClient();
         LocationRequest locationRequest = LocationRequest.create();
         Looper looper = Looper.myLooper();
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, looper);
     }
 

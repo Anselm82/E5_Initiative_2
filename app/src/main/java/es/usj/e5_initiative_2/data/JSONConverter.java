@@ -8,7 +8,7 @@ import java.util.List;
  * Clase base para la conversión de entidades a JSON y viceversa. Cualquier entidad que se quiera
  * utilizar con JSON debería heredar de esta clase parametrizada.
  *
- * Created by Juan José Hernández Alonso on 28/4/17.
+ * Created by Juan José Hernández Alonso on 16/11/17.
  */
 public abstract class JSONConverter<T> {
 

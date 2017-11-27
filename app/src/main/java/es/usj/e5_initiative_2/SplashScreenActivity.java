@@ -9,6 +9,8 @@ import gr.net.maroulis.library.EasySplashScreen;
 
 /**
  * Clase que utiliza una librería para la configuración de un SplashScreen.
+ *
+ * Created by Juan José Hernández Alonso on 07/11/17.
  */
 public class SplashScreenActivity extends AppCompatActivity {
 

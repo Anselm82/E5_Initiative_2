@@ -19,7 +19,7 @@ import es.usj.e5_initiative_2.model.Facility;
 /**
  * Clase que realiza las peticiones REST.
  *
- * Created by Juan José Hernández Alonso on 28/4/17.
+ * Created by Juan José Hernández Alonso on 16/11/17.
  */
 public class RESTRequest {
 

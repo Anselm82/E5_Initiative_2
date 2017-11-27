@@ -22,7 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import es.usj.e5_initiative_2.location.GlobalNotificationBuilder;
+import es.usj.e5_initiative_2.notification.GlobalNotificationBuilder;
 import es.usj.e5_initiative_2.views.DetailFragment;
 import es.usj.e5_initiative_2.views.DevelopersFragment;
 import es.usj.e5_initiative_2.views.MapFragment;
@@ -32,7 +32,7 @@ import es.usj.shared.NotificationUtils;
 /**
  * Clase con la Activity para la navegación de la aplicación.
  *
- * Created by Juan José Hernández Alonso on 01/11/17.
+ * Created by Juan José Hernández Alonso on 07/11/17.
  */
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -154,6 +154,11 @@ public class NavigationActivity extends AppCompatActivity
 
     private NotificationManagerCompat mNotificationManagerCompat;
 
+    /**
+     * Método que comprueba si las notificaciones están habilitadas y que las lanza.
+     * @param entering Boolean que indica si el usuario está entrando o saliendo en la zona para
+     *                 construir la notificación.
+     */
     public void checkNotifications(boolean entering) {
         boolean areNotificationsEnabled = mNotificationManagerCompat.areNotificationsEnabled();
 
@@ -184,7 +189,7 @@ public class NavigationActivity extends AppCompatActivity
         if(entering)
             usjCampusNotification = NotificationDatabase.getUSJCampusEntranceNotification();
         else
-            usjCampusNotification = NotificationDatabase.getUSJCampusExitNotification();
+            usjCampusNotification = NotificationDatabase.getUSJCampusExitNotification(getApplicationContext());
 
         String notificationChannelId =
                 NotificationUtils.createNotificationChannel(this, usjCampusNotification);

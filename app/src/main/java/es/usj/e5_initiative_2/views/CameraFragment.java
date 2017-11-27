@@ -72,10 +72,18 @@ import es.usj.e5_initiative_2.R;
  * Fragmento que define la cámara. Solo se muestra cuando un usuario está dentro de una capa KML.
  * Lo más importante sucede en la línea 437 y sucesivas. El resto está extraído de un ejemplo del
  * manejo del API 2 de la cámara: https://github.com/googlesamples/android-Camera2Basic
+ *
  * Created by Juan José Hernández Alonso on 16/11/17.
  */
 public class CameraFragment extends Fragment
         implements FragmentCompat.OnRequestPermissionsResultCallback {
+
+
+    //A implementar por Raúl.
+
+    private void uploadToServer() {
+    }
+
 
     /**
      * Conversion from screen rotation to JPEG orientation.
@@ -438,9 +446,10 @@ public class CameraFragment extends Fragment
             @Override
             public void onClick(View v) {
                 cameraButton.setEnabled(false);
-                showToast("POI is being sent!");
+                showToast(getString(R.string.sending_image));
                 takePicture();
-                showToast("POI sent successfully!");
+                uploadToServer();
+                showToast(getString(R.string.image_sent));
                 cameraButton.setEnabled(true);
             }
         });

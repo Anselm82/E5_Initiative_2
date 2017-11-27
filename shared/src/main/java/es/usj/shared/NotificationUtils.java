@@ -6,9 +6,10 @@ import android.content.Context;
 import android.os.Build;
 
 /**
- * Created by Anselm on 24/11/17.
+ * Clase con utilidades procedente de la tarea 503.
+ *
+ * Created by Juan José Hernández Alonso on 24/11/17.
  */
-
 public class NotificationUtils {
 
     public static String createNotificationChannel(

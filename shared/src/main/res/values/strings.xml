@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">shared</string>
+    <string name="come_back">Come back soon!</string>
+    <string name="exiting_msg">We hope that you have enjoyed your USJ Experiece! Come back soon!!</string>
 </resources>

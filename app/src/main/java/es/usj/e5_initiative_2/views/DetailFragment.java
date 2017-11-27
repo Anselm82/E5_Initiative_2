@@ -13,7 +13,8 @@ import es.usj.e5_initiative_2.R;
 
 /**
  * Clase utilizada en la versión 1 de la aplicación. Usar BuildingFragment en su lugar.
- * Created by Juan José Hernández Alonso on 01/11/17.
+ *
+ * Created by Juan José Hernández Alonso on 07/11/17.
  */
 @Deprecated
 public class DetailFragment extends Fragment {

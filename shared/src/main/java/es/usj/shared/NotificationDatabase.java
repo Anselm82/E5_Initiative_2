@@ -1,11 +1,14 @@
 package es.usj.shared;
 
 import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 /**
  * Clase que generará las notificaciones.
+ *
+ * Created by Juan José Hernández Alonso on 24/11/17.
  */
 public final class NotificationDatabase {
 
@@ -25,10 +28,10 @@ public final class NotificationDatabase {
      * Método estático que generará una notificación de entrada a una de las zonas del campus.
      * @return USJCampusNotification con mensajes de despedida.
      */
-    public static USJCampusNotification getUSJCampusExitNotification() {
+    public static USJCampusNotification getUSJCampusExitNotification(Context context) {
         Bundle bundle = new Bundle();
-        bundle.putString(SUMMARY, "Come back soon!");
-        bundle.putString(TEXT, "We hope that you have enjoyed your USJ Experiece! Come back soon!!");
+        bundle.putString(SUMMARY, context.getString(R.string.come_back));
+        bundle.putString(TEXT, context.getString(R.string.exiting_msg));
         return USJCampusNotification.getInstance(bundle);
     }
 
@@ -45,22 +48,27 @@ public final class NotificationDatabase {
 
         private static synchronized USJCampusNotification getInstance(Bundle bundle) {
             if (INSTANCE == null) {
-                INSTANCE = new USJCampusNotification(bundle);
+                INSTANCE = new USJCampusNotification();
             }
+            INSTANCE.install(bundle);
             return INSTANCE;
         }
 
-        private USJCampusNotification(Bundle bundle) {
-            // Standard Notification values:
-            // Title for API <16 (4.0 and below) devices.
-            mChannelName = mContentTitle = this.title = bundle.getString(TITLE, "USJ Campus");
-            // Content for API <24 (4.0 and below) devices.
-            mContentText = this.summary = bundle.getString(SUMMARY, "Share your experience!");
+        /**
+         * Método que instala los valores de la notificación.
+         * @param bundle Bundle con los valores.
+         */
+        private synchronized void install(Bundle bundle){
+            mChannelName = mContentTitle = title = bundle.getString(TITLE, "USJ Campus");
+            mContentText = summary = bundle.getString(SUMMARY, "Share your experience!");
+            text = bundle.getString(TEXT, "Now you can take some photos of your Campus!!");
+        }
+
+        /**
+         * Constructor por defecto que inicializa las propiedades comunes.
+         */
+        private USJCampusNotification() {
             mPriority = NotificationCompat.PRIORITY_DEFAULT;
-
-            this.text = bundle.getString(TEXT, "Now you can take some photos of your Campus!!");
-
-            // Notification channel values (for devices targeting 26 and above):
             mChannelId = "channel_reminder_1";
             mChannelDescription = "USJ Campus Notifications";
             mChannelImportance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -82,7 +90,7 @@ public final class NotificationDatabase {
 
         @Override
         public String toString() {
-            return getTitle() + getText();
+            return getTitle() + " " + getText();
         }
     }
 
