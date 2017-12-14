@@ -109,8 +109,6 @@ public class DataHolder {
         put(FACILITIES, facilities);
     }
 
-
-
     private double getRandomLng() {
         return getRandomNum(-0.837628, -0.831057);
     }
