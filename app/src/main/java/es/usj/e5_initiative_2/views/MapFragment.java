@@ -114,6 +114,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (mMap != null) {
@@ -295,6 +305,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         super.onStop();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     @NonNull
     private FusedLocationProviderClient getFusedLocationProviderClient() {
         if (fusedLocationProviderClient == null) {
@@ -308,7 +323,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         }
     }
-
 
     private void registerForLocationUpdates() {
         FusedLocationProviderClient locationProviderClient = getFusedLocationProviderClient();
@@ -325,13 +339,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_map, container, false);
             setRetainInstance(true);
+
             SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
             cameraFab = view.findViewById(R.id.camera_fab);
             cameraFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((NavigationActivity)getActivity()).loadCamera();
+                    ((NavigationActivity) getActivity()).loadCamera();
                 }
             });
             setCameraButtonStatus(false);

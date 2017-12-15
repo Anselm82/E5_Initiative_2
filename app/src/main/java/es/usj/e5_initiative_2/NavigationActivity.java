@@ -36,9 +36,9 @@ import es.usj.shared.NotificationUtils;
  */
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     public static final int NOTIFICATION_ID = 888;
     private static final String DETAIL = "detail_tag";
-    private static int view = 0;
     private NavigationView navigationView;
 
     @Override
@@ -58,6 +58,7 @@ public class NavigationActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         loadMap();
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
@@ -69,6 +70,8 @@ public class NavigationActivity extends AppCompatActivity
             int count = getFragmentManager().getBackStackEntryCount();
             if (count == 0) {
                 super.onBackPressed();
+                loadMap();
+                navigationView.getMenu().getItem(0).setChecked(true);
             } else {
                 getFragmentManager().popBackStack();
             }
