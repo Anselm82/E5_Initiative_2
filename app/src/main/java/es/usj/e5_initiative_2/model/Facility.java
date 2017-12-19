@@ -13,23 +13,33 @@ import java.io.Serializable;
  */
 public class Facility implements ClusterItem, Serializable {
 
+
+    /**
+     * ID del edificio al que pertenece
+     */
+    private String buildingID;
+
     /**
      * Posición con el formato directo para el marcador de Gmap.
      */
     private LatLng position;
+
     /**
      * Cadenas con los datos que podremos mostar, normalmente title = nombre de la instalación,
      * snippet = pequeña descripción
      */
     private String title, snippet;
 
-    public Facility(LatLng position, String title, String snippet){
+    public Facility(String buildingID, LatLng position, String title, String snippet){
+        this.buildingID = buildingID;
         this.position = position;
         this.title = title;
         this.snippet = snippet;
     }
 
     // GETTERS
+    public String getBuildingID() { return buildingID; }
+
     @Override
     public LatLng getPosition() {
         return position;
@@ -49,4 +59,5 @@ public class Facility implements ClusterItem, Serializable {
     public String toString() {
         return getTitle();
     }
+
 }

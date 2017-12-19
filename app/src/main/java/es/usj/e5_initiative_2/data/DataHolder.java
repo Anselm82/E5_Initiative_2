@@ -1,10 +1,10 @@
 package es.usj.e5_initiative_2.data;
 
-import com.google.android.gms.maps.model.LatLng;
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import es.usj.e5_initiative_2.model.Building;
 import es.usj.e5_initiative_2.model.Facility;
@@ -16,25 +16,48 @@ import es.usj.e5_initiative_2.model.Facility;
  */
 public class DataHolder {
 
-    /**
+     /**
      * METODOS a implementar por Raúl junto con el servidor y el API. Para convertir JSON lo mejor
      * es usar clases heredadas del converter para las clases Facility y Building.
      * Luego, por el campo decidido (nombre o id) enlazarlos entre si.
      * Finalmente, cuando se recuperan las capas, acceder a los edificios y asociarlas.
      */
     private void init() {
-        /**
-         getBuildingsFromJSON();
-         getFacilitiesFromJSON();
-         bindFacilitiesToBuildings();
-         bindKMLLayerToBuildings();
-         **/
+
+        new FacilitiesTask().execute();
+        new BuildingsTask().execute();
+
+    }
+
+    //Method created to retrieve the data from the AsyncTask
+    private void onFacilitiesObtained(ArrayList<Facility> facilities) {
+        try{
+            this.facilities = facilities;
+            put(FACILITIES, facilities);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    //Method created to retrieve the data from the AsyncTask
+    private void onBuildingsObtained(HashMap<String, Building> retrievedBuildings) {
+        try{
+            bindFacilitiesToBuildings(facilities, retrievedBuildings);
+            put(BUILDINGS, retrievedBuildings);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static final String IS_INSIDE = "isInside";
     public static final String LOCATION = "location";
     public static final String FACILITIES = "facilities";
     public static final String BUILDINGS = "buildings";
+
+    private static final String buildings_url = "http://ralamarti.tk/android/buildings.json";
+    private static final String facilities_url = "http://ralamarti.tk/android/facilities.json";
+
+    private ArrayList<Facility> facilities;
 
     private static DataHolder INSTANCE;
 
@@ -52,8 +75,7 @@ public class DataHolder {
         if(INSTANCE == null){
             INSTANCE = new DataHolder();
             INSTANCE.put(IS_INSIDE, false);
-            //Deberá eliminarse
-            INSTANCE.initDummyValues();
+            INSTANCE.init();
         }
         return INSTANCE;
     }
@@ -78,50 +100,72 @@ public class DataHolder {
         data.put(key, value);
     }
 
-    // EN LA VERSIÓN FINAL ESTOS MÉTODOS DEBERÁN DESAPARECER. Solo se usan para generar lat y lng aleatorias.
-
-
     /**
-     * Método de inicialización con valores de prueba. Este debería desaparecer ya que los elementos
-     * se van a recuperar desde internet y el API REST.
+     * Method that binds the facilities to the buildings
+     * @param facilities The list of facilities
+     * @param buildings The map of buildings
      */
-    private void initDummyValues(){
-        HashMap<String, Building> buildings = new HashMap<>();
-        for(int i = 0; i < 3; i++){
-            Building b = new Building();
-            b.setId(i);
-            b.getImages().add("https://lh5.googleusercontent.com/Mu1M6K6YWXfqhKy5k7MzyVY-gUCrkOs-ZZzCZKvayZSivZ4PwEfsRRU1BWGb1sOzbqzQTSlaDqQd24p8s7IKQ1i4vXFv6z_rGuBStt3RUs2oGO_itma5lNr5vfCFjWICRsT22Ss");
-            b.getImages().add("https://lh5.googleusercontent.com/Mu1M6K6YWXfqhKy5k7MzyVY-gUCrkOs-ZZzCZKvayZSivZ4PwEfsRRU1BWGb1sOzbqzQTSlaDqQd24p8s7IKQ1i4vXFv6z_rGuBStt3RUs2oGO_itma5lNr5vfCFjWICRsT22Ss");
-            b.setName("Edificio Rectorado");
-            b.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
-            b.setDescription( b.getDescription() + b.getDescription());
-            b.setSchedule("24/7");
-            buildings.put(b.getName(), b);
+    private void bindFacilitiesToBuildings(ArrayList<Facility> facilities, HashMap<String, Building> buildings){
+
+        for (Facility facility : facilities) {
+
+            String buildingID = facility.getBuildingID();
+            Building building = buildings.get(buildingID);
+            building.getFacilities().add(facility);
+
         }
-        put(BUILDINGS, buildings);
-        List<Facility> facilities = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            Facility f = new Facility(new LatLng(getRandomLat(), getRandomLng()), "POI " + i, "Snippet " + i);
-            facilities.add(f);
-            Building b = (Building) get(BUILDINGS, HashMap.class).values().toArray()[((int)Math.random() * 3)];
-            b.getFacilities().add(f);
+
+    }
+
+    //Class created to download and parse the Facilities JSON in the background
+    @SuppressLint("StaticFieldLeak")
+    private class FacilitiesTask extends AsyncTask<String, Void, ArrayList<Facility>> {
+
+        @Override
+        //Do in background will be called when the AsyncTask is executed.
+        //We try to download the resource
+        public ArrayList<Facility> doInBackground(String... sUrl) {
+
+            ArrayList<Facility> facilities;
+            RESTRequest request = new RESTRequest(facilities_url);
+            request.doGet();
+            String json = request.getResponse();
+            facilities = JSONLoader.JSONToFacilitiesArrayList(json);
+            return facilities;
+
         }
-        put(FACILITIES, facilities);
+
+        @Override
+        protected void onPostExecute(ArrayList<Facility> facilities) {
+            //After executing the Background task, the facilities are passed to the method
+            //in the main thread that updates them
+            super.onPostExecute(facilities);
+            DataHolder.this.onFacilitiesObtained(facilities);
+        }
     }
 
-    private double getRandomLng() {
-        return getRandomNum(-0.837628, -0.831057);
-    }
+    //Class created to download and parse the Buildings JSON in the background
+    @SuppressLint("StaticFieldLeak")
+    private class BuildingsTask extends AsyncTask<String, Void, HashMap<String,Building>> {
 
-    private double getRandomLat() {
-        return getRandomNum(41.755803, 41.757872);
-    }
+        @Override
+        //Do in background will be called when the AsyncTask is executed.
+        //We try to download the resource
+        public HashMap<String,Building> doInBackground(String... sUrl) {
 
-    private double getRandomNum(double min, double max){
-        double value;
-        do {
-            value = min + Math.random();
-        } while(value > max);
-        return value;
+            RESTRequest request = new RESTRequest(buildings_url);
+            request.doGet();
+            String json = request.getResponse();
+            return JSONLoader.JSONToBuildingHashMap(json);
+
+        }
+
+        @Override
+        protected void onPostExecute(HashMap<String, Building> buildings) {
+            //After executing the Background task, the buildings are passed to the method
+            //in the main thread that updates them
+            super.onPostExecute(buildings);
+            DataHolder.this.onBuildingsObtained(buildings);
+        }
     }
 }

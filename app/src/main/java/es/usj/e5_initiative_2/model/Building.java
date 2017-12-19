@@ -16,7 +16,7 @@ public class Building implements Serializable {
      * Id del edificio. Podría utilizarse como clave para enlazar JSON y KML.
      * Debería obtenerse desde bbdd/KML.
      */
-    private int id;
+    private String id;
     /**
      * Nombre del edificio. Podría utilizarse como clave para enlazar los marcadores (POIs) con la capa
      * KML (KMLLayer). Debería obtenerse desde bbdd/KML.
@@ -45,20 +45,12 @@ public class Building implements Serializable {
 
     // GETTERS Y SETTERS
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setFacilities(List<Facility> facilities) {
-        this.facilities = facilities;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
     }
 
     public void setSchedule(String schedule) {
@@ -69,7 +61,7 @@ public class Building implements Serializable {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
