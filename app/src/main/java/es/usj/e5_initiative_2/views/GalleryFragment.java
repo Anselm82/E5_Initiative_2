@@ -66,7 +66,7 @@ public class GalleryFragment extends Fragment {
 
         // 1. get a reference to recyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
 
         // 2. set layoutManger
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), span_count));
