@@ -39,4 +39,8 @@
     <string name="notifications_needed">You need to enable notifications for this app</string>
     <string name="sending_image">POI is being sent!</string>
     <string name="image_sent">POI sent successfully!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gallery">Gallery</string>
 </resources>

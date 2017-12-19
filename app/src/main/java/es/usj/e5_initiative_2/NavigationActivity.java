@@ -25,6 +25,7 @@ import android.view.View;
 import es.usj.e5_initiative_2.notification.GlobalNotificationBuilder;
 import es.usj.e5_initiative_2.views.DetailFragment;
 import es.usj.e5_initiative_2.views.DevelopersFragment;
+import es.usj.e5_initiative_2.views.GalleryFragment;
 import es.usj.e5_initiative_2.views.MapFragment;
 import es.usj.shared.NotificationDatabase;
 import es.usj.shared.NotificationUtils;
@@ -85,8 +86,10 @@ public class NavigationActivity extends AppCompatActivity
             loadMap();
         } else if (id == R.id.nav_developers) {
             loadDevelopers();
+        } else if (id == R.id.nav_gallery){
+            loadGallery();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -104,6 +107,14 @@ public class NavigationActivity extends AppCompatActivity
      */
     public void loadDevelopers() {
         Fragment fragment = DevelopersFragment.newInstance();
+        loadFragment(fragment);
+    }
+
+    /**
+     * Método para cargar el fragmento galería.
+     */
+    public void loadGallery() {
+        Fragment fragment = GalleryFragment.newInstance();
         loadFragment(fragment);
     }
 
@@ -144,7 +155,7 @@ public class NavigationActivity extends AppCompatActivity
             transaction.addToBackStack(null);
         }
         transaction.replace(R.id.main_content, fragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawers();
     }
 

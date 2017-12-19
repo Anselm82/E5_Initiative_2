@@ -18,14 +18,14 @@ import es.usj.e5_initiative_2.model.Facility;
 /**
  * Class with the methods to get and convert JSON data
  */
-class JSONLoader {
+public class JSONLoader {
 
     /**
      * Method that returns a HashMap of Buildings from a JSON file as string
      * @param fileAsString the JSON file from which buildings must be recovered
      * @return a hash map of buildings
      */
-    static HashMap<String, Building> JSONToBuildingHashMap(String fileAsString){
+    public static HashMap<String, Building> JSONToBuildingHashMap(String fileAsString){
         try{
 
             //I create the JSONArray from the string
@@ -74,7 +74,7 @@ class JSONLoader {
      * @param fileAsString the JSON from which facilities must be recovered
      * @return an array list of facilities
      */
-    static ArrayList<Facility> JSONToFacilitiesArrayList(String fileAsString){
+    public static ArrayList<Facility> JSONToFacilitiesArrayList(String fileAsString){
         try{
 
             //I create the JSONArray from the string
@@ -105,6 +105,42 @@ class JSONLoader {
 
             //Returning the facilities
             return facilities;
+
+        }catch(Exception ex){
+            return null;
+        }
+    }
+
+    /**
+     * Method that returns an ArrayList of String from a JSON file
+     * @param fileAsString the JSON from which strings must be recovered
+     * @return an array list of string
+     */
+    public static ArrayList<String> JSONToStringArrayList(String fileAsString)
+    {
+        try
+        {
+
+            //I create the JSONArray from the string
+            JSONArray jsonArray = new JSONArray(fileAsString);
+
+            //I create the variable for the ArrayList of String to fill and return
+            ArrayList<String> strings = new ArrayList<>();
+
+            //If the JSONArray object is not null
+            //For every element in the array, I create a string with the data and add it to
+            //the ArrayList<String>
+            for(int element = 0; element < jsonArray.length(); element++)
+            {
+                //Retrieving the object
+                String string = jsonArray.getString(element);
+
+                //Adding it to the list
+                strings.add(string);
+            }
+
+            //Returning the facilities
+            return strings;
 
         }catch(Exception ex){
             return null;
