@@ -151,10 +151,11 @@ public class BuildingFragment extends Fragment {
             url = building.getImages().get(0);
             Picasso.with(getContext()).load(url).into(imageView);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     String image = building.getImages().get(progress);
-                    Picasso.with(getContext()).load(image).into(imageView);
+                    Picasso.with(getContext()).load(image).noFade().into(imageView);
                 }
 
                 @Override
