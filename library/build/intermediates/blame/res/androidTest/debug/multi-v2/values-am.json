@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Projects\\E5_Initiative_2\\library\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-am\\values-am.xml",
+            "outputFile": "/Users/Anselm/Desktop/MTMA/Desarrollo en la plataforma Android/Workspace/E5_Initiative_2/library/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-am/values-am.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Khaedhras\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.6.0.aar\\116e2c50ae0b46d6285b13799045073b\\res\\values-am\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "285",
-                        "endColumns": "190",
-                        "endOffsets": "475"
-                    },
-                    "to": {
-                        "startLines": "9",
-                        "startColumns": "4",
-                        "startOffsets": "1050",
-                        "endColumns": "190",
-                        "endOffsets": "1236"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Khaedhras\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.6.0.aar\\dcbd1c5a63e38dfae1b579927552190e\\res\\values-am\\values.xml",
+                    "source": "/Users/Anselm/.gradle/caches/transforms-1/files-1.1/play-services-base-11.6.0.aar/a8a9839b3fb17ae88701c3e079a3c984/res/values-am/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,6 +18,23 @@
                         "startOffsets": "105,209,380,504,608,794,919,1241,1428,1533,1709,1834,2028,2185,2275,2362",
                         "endColumns": "103,170,123,103,185,124,130,186,104,175,124,193,156,89,86,99",
                         "endOffsets": "204,375,499,603,789,914,1045,1423,1528,1704,1829,2023,2180,2270,2357,2457"
+                    }
+                },
+                {
+                    "source": "/Users/Anselm/.gradle/caches/transforms-1/files-1.1/play-services-basement-11.6.0.aar/7624864b5df928df3c99177e74d2bfec/res/values-am/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "285",
+                        "endColumns": "190",
+                        "endOffsets": "475"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "1050",
+                        "endColumns": "190",
+                        "endOffsets": "1236"
                     }
                 }
             ]

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Projects\E5_Initiative_2\library\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Projects\E5_Initiative_2\library\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/Anselm/Desktop/MTMA/Desarrollo en la plataforma Android/Workspace/E5_Initiative_2/library/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/Anselm/Desktop/MTMA/Desarrollo en la plataforma Android/Workspace/E5_Initiative_2/library/src/debug/jniLibs"/></dataSet></merger>

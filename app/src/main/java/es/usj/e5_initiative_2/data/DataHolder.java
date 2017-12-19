@@ -1,6 +1,7 @@
 package es.usj.e5_initiative_2.data;
 
 import android.annotation.SuppressLint;
+import android.location.Location;
 import android.os.AsyncTask;
 
 import java.util.ArrayList;
@@ -23,7 +24,10 @@ public class DataHolder {
      * Finalmente, cuando se recuperan las capas, acceder a los edificios y asociarlas.
      */
     private void init() {
-
+        Location l = new Location("");
+        l.setLatitude(41.756969);
+        l.setLongitude(-0.834666);
+        put(LOCATION,l);
         new FacilitiesTask().execute();
         new BuildingsTask().execute();
 
