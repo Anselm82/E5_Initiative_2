@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import es.usj.e5_initiative_2.R;
 
 /**
- * Created by Raúl
+ * Created by Raúl Lapeña Martí
+ * Class that defines a recycler view for the photo gallery
  */
-
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
     private Context context;

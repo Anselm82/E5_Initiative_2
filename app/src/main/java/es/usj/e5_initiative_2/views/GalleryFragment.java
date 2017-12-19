@@ -18,6 +18,9 @@ import es.usj.e5_initiative_2.data.GalleryAdapter;
 import es.usj.e5_initiative_2.data.JSONLoader;
 import es.usj.e5_initiative_2.data.RESTRequest;
 
+/**
+ * Created by  Raúl Lapeña Martí
+ */
 public class GalleryFragment extends Fragment {
 
     private static GalleryFragment INSTANCE;

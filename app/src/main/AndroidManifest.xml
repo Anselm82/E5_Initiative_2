@@ -33,9 +33,12 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <!--meta-data
+        <!-- API KEY RAÚL
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCzANZA-bbaVcFuQpsKTTG7W3q8vuG5A-Y" /-->
+            android:value="AIzaSyCzANZA-bbaVcFuQpsKTTG7W3q8vuG5A-Y" />
+        -->
+        <!-- API KEY JUANJO -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDGXCRpPheOyOt9oTWgZh4hy3MnnRRopK8" />

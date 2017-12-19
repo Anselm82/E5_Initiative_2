@@ -18,7 +18,7 @@ import es.usj.e5_initiative_2.model.Facility;
 public class DataHolder {
 
      /**
-     * METODOS a implementar por Raúl junto con el servidor y el API. Para convertir JSON lo mejor
+     * METODOS a implementados por Raúl junto con el servidor y el API. Para convertir JSON lo mejor
      * es usar clases heredadas del converter para las clases Facility y Building.
      * Luego, por el campo decidido (nombre o id) enlazarlos entre si.
      * Finalmente, cuando se recuperan las capas, acceder a los edificios y asociarlas.
@@ -30,10 +30,11 @@ public class DataHolder {
         put(LOCATION,l);
         new FacilitiesTask().execute();
         new BuildingsTask().execute();
-
     }
 
-    //Method created to retrieve the data from the AsyncTask
+    /**
+     *  Method created to retrieve the data from the AsyncTask
+     */
     private void onFacilitiesObtained(ArrayList<Facility> facilities) {
         try{
             this.facilities = facilities;
@@ -43,7 +44,9 @@ public class DataHolder {
         }
     }
 
-    //Method created to retrieve the data from the AsyncTask
+    /**
+     * Method created to retrieve the data from the AsyncTask
+     */
     private void onBuildingsObtained(HashMap<String, Building> retrievedBuildings) {
         try{
             bindFacilitiesToBuildings(facilities, retrievedBuildings);
@@ -110,24 +113,23 @@ public class DataHolder {
      * @param buildings The map of buildings
      */
     private void bindFacilitiesToBuildings(ArrayList<Facility> facilities, HashMap<String, Building> buildings){
-
         for (Facility facility : facilities) {
-
             String buildingID = facility.getBuildingID();
             Building building = buildings.get(buildingID);
             building.getFacilities().add(facility);
-
         }
-
     }
 
-    //Class created to download and parse the Facilities JSON in the background
+    /**
+     * Class created to download and parse the Facilities JSON in the background
+     */
     @SuppressLint("StaticFieldLeak")
     private class FacilitiesTask extends AsyncTask<String, Void, ArrayList<Facility>> {
 
         @Override
-        //Do in background will be called when the AsyncTask is executed.
-        //We try to download the resource
+        /**
+         * Do in background will be called when the AsyncTask is executed. We try to download the resource
+         */
         public ArrayList<Facility> doInBackground(String... sUrl) {
 
             ArrayList<Facility> facilities;
@@ -148,13 +150,16 @@ public class DataHolder {
         }
     }
 
-    //Class created to download and parse the Buildings JSON in the background
+    /**
+     * Class created to download and parse the Buildings JSON in the background
+     */
     @SuppressLint("StaticFieldLeak")
     private class BuildingsTask extends AsyncTask<String, Void, HashMap<String,Building>> {
 
         @Override
-        //Do in background will be called when the AsyncTask is executed.
-        //We try to download the resource
+        /**
+         * Do in background will be called when the AsyncTask is executed. We try to download the resource
+         */
         public HashMap<String,Building> doInBackground(String... sUrl) {
 
             RESTRequest request = new RESTRequest(buildings_url);

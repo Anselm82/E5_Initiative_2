@@ -1,7 +1,7 @@
 package es.usj.e5_initiative_2.data;
 
 /**
- * Created by Raúl Lapeña
+ * Created by Raúl Lapeña Martí
  */
 
 import com.google.android.gms.maps.model.LatLng;

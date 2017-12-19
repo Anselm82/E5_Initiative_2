@@ -22,25 +22,23 @@
     <string name="juan_jos_hern_ndez">Juan José Hernández</string>
     <string name="ra_l_lape_a">Raúl Lapeña</string>
     <string name="developers_title">Developers</string>
-    <string name="map">Mapa</string>
+    <string name="map">Map</string>
     <string name="e5_developers">E5 developers</string>
-    <string name="submit">Enviar</string>
+    <string name="submit">Submit</string>
     <string name="inside_polygon_message">You can take a picture of the facilities!</string>
-    <string name="lbl_name">Nombre:</string>
-    <string name="lbl_surname">Apellidos:</string>
+    <string name="lbl_name">Name:</string>
+    <string name="lbl_surname">Surname:</string>
     <string name="lbl_email">Email:</string>
-    <string name="lbl_team">Equipo:</string>
+    <string name="lbl_team">Team:</string>
 
-    <string name="image">Imagen</string>
-    <string name="information_title">Información</string>
+    <string name="image">Image</string>
+    <string name="information_title">Information</string>
     <string name="facilities_title">Facilities</string>
-    <string name="schedule_title">Horarios</string>
+    <string name="schedule_title">Schedule</string>
     <string name="OK">OK</string>
     <string name="notifications_needed">You need to enable notifications for this app</string>
-    <string name="sending_image">POI is being sent!</string>
-    <string name="image_sent">POI sent successfully!</string>
+    <string name="sending_image">Image is being sent!</string>
+    <string name="image_sent">Image sent successfully!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="gallery">Gallery</string>
 </resources>
