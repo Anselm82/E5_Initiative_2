@@ -40,49 +40,6 @@ public class RESTRequest {
     }
 
     /**
-     * Constructor que recibe un objeto URL.
-     * @param url URL a consultar.
-     */
-    public RESTRequest(URL url) {
-        this.url = url;
-    }
-
-    /**
-     * Método para hacer peticiones POST al servidor. Se utilizará en la subida de imágenes al
-     * servidor como JSON.
-     * @param param Objeto a añadir al servidor.
-     */
-    public void doPost(Object param) {
-        try {
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoOutput(true);
-            httpURLConnection.setRequestProperty("Content-type", "application/json");
-            httpURLConnection.connect();
-            String json = new GsonBuilder().create().toJson(param, Facility.class);
-            JSONObject jsonObject = new JSONObject(json);
-            DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-            wr.writeBytes(jsonObject.toString());
-            wr.flush();
-            wr.close();
-            InputStream inputStream = httpURLConnection.getInputStream();
-            if (inputStream != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                inputStream.close();
-                response = sb.toString();
-                httpURLConnection.disconnect();
-            }
-        } catch (Exception e) {
-            Log.e("POST", "Error in http connection " + e.toString());
-        }
-    }
-
-    /**
      * Método para peticiones GET.
      */
     public void doGet() {
