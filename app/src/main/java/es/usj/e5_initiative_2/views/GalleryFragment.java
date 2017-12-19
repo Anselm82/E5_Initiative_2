@@ -25,6 +25,8 @@ public class GalleryFragment extends Fragment {
     static ArrayList<String> image_urls;
     static String php_url = "http://ralamarti.tk/android/gallery/listFiles.php";
     int span_count = 2;
+    RecyclerView recyclerView;
+    View rootView;
 
     public GalleryFragment() {}
 
@@ -38,15 +40,11 @@ public class GalleryFragment extends Fragment {
         if (INSTANCE == null) {
             INSTANCE = new GalleryFragment();
             image_urls = new ArrayList<>();
-            INSTANCE.init();
         }
         // Data for the recycler view
         return INSTANCE;
     }
 
-    private void init() {
-        new ImageRetrieveTask().execute();
-    }
 
     public void onURLsObtained(ArrayList<String> retrievedUrls)
     {
@@ -56,19 +54,12 @@ public class GalleryFragment extends Fragment {
             if(!url.equals("listFiles.php"))
                 image_urls.add("http://ralamarti.tk/android/gallery/" + url);
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
-        View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
 
         // 1. get a reference to recyclerView
-        RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(false);
+        recyclerView = rootView.findViewById(R.id.recycler);
+        recyclerView.setHasFixedSize(true);
 
-        // 2. set layoutManger
+        // 2. set layoutManager
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), span_count));
 
         // 3. create an adapter
@@ -79,7 +70,13 @@ public class GalleryFragment extends Fragment {
 
         // 5. set item animator to DefaultAnimator
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        new ImageRetrieveTask().execute();
+        rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
         return rootView;
     }
 
